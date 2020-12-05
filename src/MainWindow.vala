@@ -52,6 +52,7 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
         timer_controls.pack_start (skip_current_button, false, false, 0);
 
         var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+        box.get_style_context ().add_class ("timer-box");
         box.pack_start (timer_label, true, true, 0);
         box.pack_start (timer_controls, true, false, 0);
 

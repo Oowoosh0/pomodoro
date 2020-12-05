@@ -1,5 +1,26 @@
+@define-color colorBackground #007367;
+
+.titlebar {
+    background-color: @colorBackground;
+    border: none;
+    box-shadow:
+        inset 1px 0 0 0 shade (@colorBackground, 1.07),
+        inset -1px 0 0 0 shade (@colorBackground, 1.07),
+        inset 0 1px 0 0 shade (@colorBackground, 1.2);
+}
+
 .timer-label {
     font-size: 36pt;
     font-weight: 500;
     letter-spacing: -0.04em;
+}
+
+.timer-box {
+    background-color: @colorBackground;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    box-shadow:
+        inset 1px 0 0 0 shade (@colorBackground, 1.07),
+        inset -1px 0 0 0 shade (@colorBackground, 1.07),
+        inset 0 -1px 0 0 shade (@colorBackground, 1.1);
 }
