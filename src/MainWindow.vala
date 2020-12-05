@@ -12,8 +12,16 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
      construct {
         var header_bar = new Gtk.HeaderBar () {
             decoration_layout = "close:",
-            show_close_button = true
+            show_close_button = true,
+            hexpand = true
         };
+
+        var menu_button = new Gtk.Button.from_icon_name (
+            "open-menu-symbolic",
+            Gtk.IconSize.SMALL_TOOLBAR
+        );
+
+        header_bar.pack_end (menu_button);
 
         var header_grid = new Gtk.Grid ();
         var header_grid_context = header_grid.get_style_context ();
