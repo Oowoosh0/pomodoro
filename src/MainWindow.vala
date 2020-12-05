@@ -15,13 +15,16 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
             show_close_button = true
         };
 
-        var header_bar_context = header_bar.get_style_context ();
-        header_bar_context.add_class ("titlebar");
-        header_bar_context.add_class ("default-decoration");
-        header_bar_context.add_class (Gtk.STYLE_CLASS_FLAT);
+        var header_grid = new Gtk.Grid ();
+        var header_grid_context = header_grid.get_style_context ();
+        header_grid_context.add_class ("titlebar");
+        header_grid_context.add_class ("default-decoration");
+        header_grid_context.add_class (Gtk.STYLE_CLASS_FLAT);
+
+        header_grid.add (header_bar);
 
         var timer_label = new Widgets.TimerLabel ();
-        timer_label.set_label_seconds(3435);
+        timer_label.set_label_seconds (3435);
         timer_label.yalign = 1;
 
         var restart_current_button = new Gtk.Button.from_icon_name (
@@ -52,8 +55,8 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
         box.pack_start (timer_label, true, true, 0);
         box.pack_start (timer_controls, true, false, 0);
 
-        set_titlebar(header_bar);
-        add(box);
+        set_titlebar (header_grid);
+        add (box);
         get_style_context ().add_class ("rounded");
      }
 }
