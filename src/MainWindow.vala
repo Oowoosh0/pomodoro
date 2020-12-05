@@ -1,13 +1,13 @@
 public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
-     public MainWindow (Gtk.Application application) {
-         Object (
+    public MainWindow (Gtk.Application application) {
+        Object (
              application: application,
              title: "Pomodoro",
-             width_request: 500,
-             height_request: 500,
+             width_request: 450,
+             height_request: 450,
              resizable: false
-         );
-     }
+        );
+    }
 
      construct {
         var header_bar = new Gtk.HeaderBar () {
