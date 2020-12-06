@@ -14,6 +14,8 @@ executable(
     'src/Application.vala',
     'src/MainWindow.vala',
     'src/Widgets/TimerLabel.vala',
+    'src/Timer/Pomodoro.vala',
+    'src/Timer/PomodoroState.vala',
     dependencies : [
         dependency('gtk+-3.0')
     ]

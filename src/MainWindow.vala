@@ -1,4 +1,7 @@
 public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
+    private Timer.Pomodoro pomodoro;
+    private Widgets.TimerLabel timer_label;
+
     public MainWindow (Gtk.Application application) {
         Object (
              application: application,
@@ -10,6 +13,11 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
     }
 
      construct {
+        pomodoro = new Timer.Pomodoro(15, 1234);
+        pomodoro.start.connect (on_pomodoro_start);
+        pomodoro.pause.connect (on_pomodoro_pause);
+        pomodoro.finished.connect (on_pomodoro_finished);
+
         var header_bar = new Gtk.HeaderBar () {
             decoration_layout = "close:",
             show_close_button = true,
@@ -31,8 +39,8 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
 
         header_grid.add (header_bar);
 
-        var timer_label = new Widgets.TimerLabel ();
-        timer_label.set_label_seconds (3435);
+        timer_label = new Widgets.TimerLabel ();
+        timer_label.set_label_seconds (pomodoro.work_time_seconds);
         timer_label.yalign = 1;
 
         var restart_current_button = new Gtk.Button.from_icon_name (
@@ -46,6 +54,7 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
             Gtk.IconSize.DIALOG
         );
         start_pause_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        start_pause_button.clicked.connect (() => pomodoro.start_pause_toggle ());
 
         var skip_current_button = new Gtk.Button.from_icon_name (
             "media-skip-forward-symbolic",
@@ -67,5 +76,28 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
         set_titlebar (header_grid);
         add (box);
         get_style_context ().add_class ("rounded");
+     }
+
+     private void on_pomodoro_start () {
+         Timeout.add(200, () => {
+             timer_label.set_label_seconds (pomodoro.get_remaining_time ());
+             return pomodoro.running;
+         });
+     }
+
+     private void on_pomodoro_pause () {
+
+     }
+
+     private void on_pomodoro_finished () {
+
+     }
+
+     private void on_pomodoro_skip_backward () {
+
+     }
+
+     private void on_pomodoro_skip_forward () {
+
      }
 }
