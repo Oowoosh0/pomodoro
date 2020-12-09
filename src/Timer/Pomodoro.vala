@@ -3,8 +3,11 @@ public class Pomodoro.Timer.Pomodoro : Object {
     public int break_time_seconds {get; set;}
     public PomodoroState state {get; private set; default = PomodoroState.WORK;}
     public bool auto_start_next_interval {get; set; default = true;}
-    public bool running {get; private set; default = false;}
-    private TimeoutSource timer;
+    public bool running {
+        get { return timer != null; }
+        private set {}
+    }
+    private TimeoutSource timer = null;
 
     public Pomodoro (int _work_time_seconds, int _break_time_seconds) {
         work_time_seconds = _work_time_seconds;
@@ -24,9 +27,22 @@ public class Pomodoro.Timer.Pomodoro : Object {
     public signal void finished ();
 
     public int get_remaining_time () {
+        if (!running) {
+            return get_next_interval_length ();
+        }
         int64 time_in_ns = timer.get_ready_time () - timer.get_time ();
         int time_in_sec = (int) (time_in_ns / (1000 * 1000));
         return time_in_sec;
+    }
+
+    public int get_next_interval_length () {
+        switch (state) {
+        case PomodoroState.WORK:
+            return work_time_seconds;
+        case PomodoroState.BREAK:
+            return break_time_seconds;
+        }
+        return 0;
     }
 
     private void _start_pause_toggle () {
@@ -62,6 +78,18 @@ public class Pomodoro.Timer.Pomodoro : Object {
     }
 
     private void _finished () {
-        running = false;
+        timer = null;
+        switch (state) {
+        case PomodoroState.WORK:
+            state = PomodoroState.BREAK;
+            break;
+        case PomodoroState.BREAK:
+            state = PomodoroState.WORK;
+            break;
+        }
+
+        if (auto_start_next_interval) {
+            start ();
+        }
     }
 }

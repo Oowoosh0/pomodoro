@@ -13,7 +13,7 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
     }
 
      construct {
-        pomodoro = new Timer.Pomodoro(15, 1234);
+        pomodoro = new Timer.Pomodoro(15, 10);
         pomodoro.start.connect (on_pomodoro_start);
         pomodoro.pause.connect (on_pomodoro_pause);
         pomodoro.finished.connect (on_pomodoro_finished);
@@ -90,6 +90,7 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
      }
 
      private void on_pomodoro_finished () {
+        timer_label.set_label_seconds (pomodoro.get_next_interval_length ());
 
      }
 
