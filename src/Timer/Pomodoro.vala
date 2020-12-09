@@ -2,7 +2,7 @@ public class Pomodoro.Timer.Pomodoro : Object {
     public int work_time_seconds {get; set;}
     public int break_time_seconds {get; set;}
     public PomodoroState state {get; private set; default = PomodoroState.WORK;}
-    public bool auto_start_next_interval {get; set; default = true;}
+    public bool auto_start_next_interval {get; set; default = false;}
     public bool running {
         get { return timer != null; }
         private set {}

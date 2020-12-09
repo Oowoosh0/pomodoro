@@ -1,6 +1,15 @@
 public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
     private Timer.Pomodoro pomodoro;
     private Widgets.TimerLabel timer_label;
+    private const string WORK_BG_COLOR = "#007367";
+    private const string BREAK_BG_COLOR = "#c6262e";
+    private const string BG_CSS = """
+        @define-color colorBackground %s;
+
+        .bg-color {
+            transition: all 250ms ease-in-out;
+        }
+    """;
 
     public MainWindow (Gtk.Application application) {
         Object (
@@ -13,7 +22,7 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
     }
 
      construct {
-        pomodoro = new Timer.Pomodoro(15, 10);
+        pomodoro = new Timer.Pomodoro(10, 5);
         pomodoro.start.connect (on_pomodoro_start);
         pomodoro.pause.connect (on_pomodoro_pause);
         pomodoro.finished.connect (on_pomodoro_finished);
@@ -35,6 +44,7 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
         var header_grid_context = header_grid.get_style_context ();
         header_grid_context.add_class ("titlebar");
         header_grid_context.add_class ("default-decoration");
+        header_grid_context.add_class ("bg-color");
         header_grid_context.add_class (Gtk.STYLE_CLASS_FLAT);
 
         header_grid.add (header_bar);
@@ -69,7 +79,9 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
         timer_controls.pack_start (skip_current_button, false, false, 0);
 
         var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        box.get_style_context ().add_class ("timer-box");
+        var box_context = box.get_style_context ();
+        box_context.add_class ("timer-box");
+        box_context.add_class ("bg-color");
         box.pack_start (timer_label, true, true, 0);
         box.pack_start (timer_controls, true, false, 0);
 
@@ -90,8 +102,29 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
      }
 
      private void on_pomodoro_finished () {
-        timer_label.set_label_seconds (pomodoro.get_next_interval_length ());
+        string bg_color = WORK_BG_COLOR;
+        switch (pomodoro.state) {
+        case Timer.PomodoroState.WORK:
+            bg_color = WORK_BG_COLOR;
+            break;
+        case Timer.PomodoroState.BREAK:
+            bg_color = BREAK_BG_COLOR;
+            break;
+        }
 
+        var css_provider = new Gtk.CssProvider ();
+        var break_css = BG_CSS.printf (bg_color);
+        try {
+            css_provider.load_from_data (break_css, break_css.length);
+            Gtk.StyleContext.add_provider_for_screen (
+                Gdk.Screen.get_default (),
+                css_provider,
+                Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+            );
+        } catch (GLib.Error e) {
+            return;
+        }
+        timer_label.set_label_seconds (pomodoro.get_next_interval_length ());
      }
 
      private void on_pomodoro_skip_backward () {
