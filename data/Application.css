@@ -1,6 +1,6 @@
 @define-color colorBackground #007367;
 
-.titlebar {
+.main-titlebar {
     border: none;
     box-shadow:
         inset 1px 0 0 0 shade (@colorBackground, 1.07),

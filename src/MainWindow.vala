@@ -1,6 +1,7 @@
 public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
     private Timer.Pomodoro pomodoro;
     private Widgets.TimerLabel timer_label;
+    private Widgets.PreferencesDialog? preferences_dialog = null;
     private const string WORK_BG_COLOR = "#007367";
     private const string BREAK_BG_COLOR = "#c6262e";
     private const string BG_CSS = """
@@ -37,12 +38,15 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
             "open-menu-symbolic",
             Gtk.IconSize.SMALL_TOOLBAR
         );
+        menu_button.clicked.connect (() => {
+            show_preferences_dialog ();
+        });
 
         header_bar.pack_end (menu_button);
 
         var header_grid = new Gtk.Grid ();
         var header_grid_context = header_grid.get_style_context ();
-        header_grid_context.add_class ("titlebar");
+        header_grid_context.add_class ("main-titlebar");
         header_grid_context.add_class ("default-decoration");
         header_grid_context.add_class ("bg-color");
         header_grid_context.add_class (Gtk.STYLE_CLASS_FLAT);
@@ -133,5 +137,18 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
 
      private void on_pomodoro_skip_forward () {
 
+     }
+
+     private void show_preferences_dialog () {
+         if (preferences_dialog == null) {
+             preferences_dialog = new Widgets.PreferencesDialog (this);
+             preferences_dialog.show_all ();
+
+             preferences_dialog.destroy.connect (() => {
+                 preferences_dialog = null;
+             });
+         }
+
+         preferences_dialog.present ();
      }
 }
