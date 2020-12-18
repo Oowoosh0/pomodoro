@@ -3,10 +3,7 @@ public class Pomodoro.Timer.Pomodoro : Object {
     public int break_time_seconds {get; set;}
     public PomodoroState state {get; private set; default = PomodoroState.WORK;}
     public bool auto_start_next_interval {get; set; default = false;}
-    public bool running {
-        get { return timer != null; }
-        private set {}
-    }
+    private int last_remaining_time = 0;
     private TimeoutSource timer = null;
 
     public Pomodoro (int _work_time_seconds, int _break_time_seconds) {
@@ -26,13 +23,24 @@ public class Pomodoro.Timer.Pomodoro : Object {
     public signal void pause ();
     public signal void finished ();
 
+    public bool is_paused () {
+        return timer == null && last_remaining_time > 0;
+    }
+
+    public bool is_running () {
+        return timer != null;
+    }
+
     public int get_remaining_time () {
-        if (!running) {
+        if (!is_running () && !is_paused ()) {
             return get_next_interval_length ();
+        } else if (is_paused ()) {
+            return last_remaining_time;
         }
         int64 time_in_ns = timer.get_ready_time () - timer.get_time ();
         int time_in_sec = (int) (time_in_ns / (1000 * 1000));
-        return time_in_sec;
+        last_remaining_time = time_in_sec;
+        return last_remaining_time;
     }
 
     public int get_next_interval_length () {
@@ -46,7 +54,7 @@ public class Pomodoro.Timer.Pomodoro : Object {
     }
 
     private void _start_pause_toggle () {
-        if (running) {
+        if (is_running ()) {
             pause ();
         } else {
             start ();
@@ -54,14 +62,16 @@ public class Pomodoro.Timer.Pomodoro : Object {
     }
 
     private void _start () {
-        int interval_length = 0;
-        switch (state) {
-        case PomodoroState.WORK:
-            interval_length = work_time_seconds;
-            break;
-        case PomodoroState.BREAK:
-            interval_length = break_time_seconds;
-            break;
+        int interval_length = last_remaining_time;
+        if (!is_paused ()) {
+            switch (state) {
+            case PomodoroState.WORK:
+                interval_length = work_time_seconds;
+                break;
+            case PomodoroState.BREAK:
+                interval_length = break_time_seconds;
+                break;
+            }
         }
 
         timer = new TimeoutSource.seconds (interval_length);
@@ -70,14 +80,15 @@ public class Pomodoro.Timer.Pomodoro : Object {
             return Source.REMOVE;
         });
         timer.attach (MainContext.get_thread_default ());
-        running = true;
     }
 
     private void _pause () {
-
+        timer.destroy ();
+        timer = null;
     }
 
     private void _finished () {
+        timer.destroy ();
         timer = null;
         switch (state) {
         case PomodoroState.WORK:

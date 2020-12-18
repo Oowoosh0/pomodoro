@@ -1,6 +1,7 @@
 public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
     private Timer.Pomodoro pomodoro;
     private Widgets.TimerLabel timer_label;
+    private Gtk.Button start_pause_button;
     private Widgets.PreferencesDialog? preferences_dialog = null;
     private const string WORK_BG_COLOR = "#007367";
     private const string BREAK_BG_COLOR = "#c6262e";
@@ -63,7 +64,7 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
         );
         restart_current_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
 
-        var start_pause_button = new Gtk.Button.from_icon_name (
+        start_pause_button = new Gtk.Button.from_icon_name (
             "media-playback-start-symbolic",
             Gtk.IconSize.DIALOG
         );
@@ -95,17 +96,33 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
      }
 
      private void on_pomodoro_start () {
+        Gtk.Image pause_icon = new Gtk.Image.from_icon_name (
+            "media-playback-pause-symbolic",
+            Gtk.IconSize.DIALOG
+        );
+        start_pause_button.set_image (pause_icon);
+
          Timeout.add(200, () => {
              timer_label.set_label_seconds (pomodoro.get_remaining_time ());
-             return pomodoro.running;
+             return pomodoro.is_running ();
          });
      }
 
      private void on_pomodoro_pause () {
-
+        Gtk.Image start_icon = new Gtk.Image.from_icon_name (
+            "media-playback-start-symbolic",
+            Gtk.IconSize.DIALOG
+        );
+        start_pause_button.set_image (start_icon);
      }
 
      private void on_pomodoro_finished () {
+        Gtk.Image start_icon = new Gtk.Image.from_icon_name (
+            "media-playback-start-symbolic",
+            Gtk.IconSize.DIALOG
+        );
+        start_pause_button.set_image (start_icon);
+
         string bg_color = WORK_BG_COLOR;
         switch (pomodoro.state) {
         case Timer.PomodoroState.WORK:
