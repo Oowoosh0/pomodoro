@@ -58,11 +58,12 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
         timer_label.set_label_seconds (pomodoro.work_time_seconds);
         timer_label.yalign = 1;
 
-        var restart_current_button = new Gtk.Button.from_icon_name (
+        var skip_backward_button = new Gtk.Button.from_icon_name (
             "media-skip-backward-symbolic",
             Gtk.IconSize.DIALOG
         );
-        restart_current_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        skip_backward_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        skip_backward_button.clicked.connect (() => pomodoro.skip_backward ());
 
         start_pause_button = new Gtk.Button.from_icon_name (
             "media-playback-start-symbolic",
@@ -71,17 +72,18 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
         start_pause_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
         start_pause_button.clicked.connect (() => pomodoro.start_pause_toggle ());
 
-        var skip_current_button = new Gtk.Button.from_icon_name (
+        var skip_forward_button = new Gtk.Button.from_icon_name (
             "media-skip-forward-symbolic",
             Gtk.IconSize.DIALOG
         );
-        skip_current_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        skip_forward_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        skip_forward_button.clicked.connect (() => pomodoro.skip_forward ());
 
         var timer_controls = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         timer_controls.halign = Gtk.Align.CENTER;
-        timer_controls.pack_start (restart_current_button, false, false, 0);
+        timer_controls.pack_start (skip_backward_button, false, false, 0);
         timer_controls.pack_start (start_pause_button, false, false, 0);
-        timer_controls.pack_start (skip_current_button, false, false, 0);
+        timer_controls.pack_start (skip_forward_button, false, false, 0);
 
         var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         var box_context = box.get_style_context ();
@@ -149,10 +151,6 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
      }
 
      private void on_pomodoro_skip_backward () {
-
-     }
-
-     private void on_pomodoro_skip_forward () {
 
      }
 

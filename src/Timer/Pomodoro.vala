@@ -4,7 +4,7 @@ public class Pomodoro.Timer.Pomodoro : Object {
     public PomodoroState state {get; private set; default = PomodoroState.WORK;}
     public bool auto_start_next_interval {get; set; default = false;}
     private int last_remaining_time = 0;
-    private TimeoutSource timer = null;
+    private TimeoutSource? timer = null;
 
     public Pomodoro (int _work_time_seconds, int _break_time_seconds) {
         work_time_seconds = _work_time_seconds;
@@ -15,12 +15,16 @@ public class Pomodoro.Timer.Pomodoro : Object {
         this.start_pause_toggle.connect ((t) => _start_pause_toggle ());
         this.start.connect ((t) => _start ());
         this.pause.connect ((t) => _pause ());
+        this.skip_forward.connect ((t) => _skip_forward ());
+        this.skip_backward.connect ((t) => _skip_backward ());
         this.finished.connect ((t) => _finished ());
     }
 
     public signal void start_pause_toggle ();
     public signal void start ();
     public signal void pause ();
+    public signal void skip_forward ();
+    public signal void skip_backward ();
     public signal void finished ();
 
     public bool is_paused () {
@@ -83,12 +87,16 @@ public class Pomodoro.Timer.Pomodoro : Object {
     }
 
     private void _pause () {
-        timer.destroy ();
+        if (timer != null) {
+            timer.destroy ();
+        }
         timer = null;
     }
 
     private void _finished () {
-        timer.destroy ();
+        if (timer != null) {
+            timer.destroy ();
+        }
         timer = null;
         switch (state) {
         case PomodoroState.WORK:
@@ -102,5 +110,14 @@ public class Pomodoro.Timer.Pomodoro : Object {
         if (auto_start_next_interval) {
             start ();
         }
+    }
+
+    private void _skip_forward () {
+        last_remaining_time = 0;
+        finished ();
+    }
+
+    private void _skip_backward () {
+
     }
 }
