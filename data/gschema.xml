@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema path="/com/github/oowoosh0/pomodoro/" id="com.github.oowoosh0.pomodoro">
+    <key name="work-time-seconds" type="i">
+      <default>1500</default>
+      <summary>Duration of work time in seconds</summary>
+      <description>Duration of work time in seconds</description>
+    </key>
+    <key name="break-time-seconds" type="i">
+      <default>300</default>
+      <summary>Duration of break time in seconds</summary>
+      <description>Duration of break time in seconds</description>
+    </key>
+  </schema>
+</schemalist>
