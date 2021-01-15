@@ -11,5 +11,20 @@
       <summary>Duration of break time in seconds</summary>
       <description>Duration of break time in seconds</description>
     </key>
+    <key name="autostart-interval" type="b">
+      <default>false</default>
+      <summary>Autostart the next interval</summary>
+      <description>Autostarts the next interval as soon as the current interval ends</description>
+    </key>
+    <key name="show-notifications" type="b">
+      <default>true</default>
+      <summary>Show notifiaction when interval ends</summary>
+      <description>Show notifiaction when interval ends</description>
+    </key>
+    <key name="raise-window" type="b">
+      <default>false</default>
+      <summary>Raise window to the top when interval ends</summary>
+      <description>Raise window to the top when interval ends</description>
+    </key>
   </schema>
 </schemalist>
