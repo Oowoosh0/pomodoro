@@ -16,9 +16,9 @@ public class Pomodoro.Widgets.PreferencesDialog : Gtk.Dialog {
         intervals_grid.column_spacing = 12;
         intervals_grid.row_spacing = 6;
         intervals_grid.attach (new SettingsLabel ("Work duration:"), 0, 0);
-        intervals_grid.attach (new SettingsDurationButton ("work-time-seconds", 5.0), 1, 0);
+        intervals_grid.attach (new SettingsDurationButton ("work-time-minutes", 5.0), 1, 0);
         intervals_grid.attach (new SettingsLabel ("Break duration:"), 0, 1);
-        intervals_grid.attach (new SettingsDurationButton ("break-time-seconds", 1.0), 1, 1);
+        intervals_grid.attach (new SettingsDurationButton ("break-time-minutes", 1.0), 1, 1);
         intervals_grid.attach (new SettingsLabel ("Autostart new interval:"), 0, 2);
         intervals_grid.attach (new SettingsSwitch ("autostart-interval"), 1, 2);
 
@@ -65,6 +65,7 @@ public class Pomodoro.Widgets.PreferencesDialog : Gtk.Dialog {
         public SettingsSwitch (string setting) {
             halign = Gtk.Align.START;
             valign = Gtk.Align.CENTER;
+            Application.settings.bind (setting, this, "active", GLib.SettingsBindFlags.DEFAULT);
         }
     }
 
@@ -74,6 +75,7 @@ public class Pomodoro.Widgets.PreferencesDialog : Gtk.Dialog {
             adjustment = adjust;
             climb_rate = 1.0;
             digits = 0;
+            Application.settings.bind (setting, this, "value", GLib.SettingsBindFlags.DEFAULT);
         }
     }
 }

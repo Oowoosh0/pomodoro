@@ -1,11 +1,13 @@
 public class Pomodoro.Application : Gtk.Application {
     public MainWindow? main_window = null;
+    public static GLib.Settings settings;
 
      public Application () {
         Object (application_id: "com.github.oowoosh0.pomodoro");
     }
 
     protected override void activate () {
+        settings = new GLib.Settings ("com.github.oowoosh0.pomodoro");
         Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
 
         var provider = new Gtk.CssProvider ();
