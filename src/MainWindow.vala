@@ -47,6 +47,7 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
         pomodoro.pause.connect (on_pomodoro_pause);
         pomodoro.finished.connect (on_pomodoro_finished);
         pomodoro.time_changed.connect (on_time_change);
+        pomodoro.interval_switch.connect (on_interval_switch);
 
         var header_bar = new Gtk.HeaderBar () {
             decoration_layout = "close:",
@@ -143,7 +144,15 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
      private void on_pomodoro_finished () {
        NotificationManager.intervalFinished ();
 
-        Gtk.Image start_icon = new Gtk.Image.from_icon_name (
+        // dirty fix because present() doesn't work
+        if (Application.settings.get_boolean ("raise-window")) {
+            this.set_keep_above (true);
+            this.set_keep_above (false);
+        }
+     }
+
+     private void on_interval_switch () {
+         Gtk.Image start_icon = new Gtk.Image.from_icon_name (
             "media-playback-start-symbolic",
             Gtk.IconSize.DIALOG
         );
@@ -172,12 +181,6 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
             return;
         }
         timer_label.set_label_seconds (pomodoro.get_next_interval_length ());
-
-        // dirty fix because present() doesn't work
-        if (Application.settings.get_boolean ("raise-window")) {
-            this.set_keep_above (true);
-            this.set_keep_above (false);
-        }
      }
 
      private void on_pomodoro_skip_backward () {
