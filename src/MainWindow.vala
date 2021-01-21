@@ -24,7 +24,7 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
     }
 
      construct {
-        pomodoro = new Timer.Pomodoro (10, 5);
+        pomodoro = new Timer.Pomodoro (1500, 300);
         Application.settings.bind (
             "work-time-minutes",
             pomodoro,
@@ -89,6 +89,7 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
             Gtk.IconSize.DIALOG
         );
         start_pause_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        start_pause_button.set_can_default (true);
         start_pause_button.clicked.connect (() => pomodoro.start_pause_toggle ());
 
         var skip_forward_button = new Gtk.Button.from_icon_name (
@@ -113,6 +114,8 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
 
         set_titlebar (header_grid);
         add (box);
+        set_default (start_pause_button);
+        set_focus (start_pause_button);
         get_style_context ().add_class ("rounded");
      }
 
