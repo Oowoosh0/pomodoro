@@ -1,8 +1,17 @@
 public class Pomodoro.Timer.Pomodoro : Object {
     public int work_time_seconds {get; set;}
     public int break_time_seconds {get; set;}
+    public int work_interval_minutes {
+        get { return work_time_seconds / 60; }
+        set { work_time_seconds = value * 60; time_changed (); }
+    }
+
+    public int break_interval_minutes {
+        get { return break_time_seconds / 60; }
+        set { break_time_seconds = value * 60; time_changed (); }
+    }
     public PomodoroState state {get; private set; default = PomodoroState.WORK;}
-    public bool auto_start_next_interval {get; set; default = false;}
+    public bool autostart_interval {get; set; default = false;}
     private int last_remaining_time = 0;
     private TimeoutSource? timer = null;
 
@@ -26,6 +35,7 @@ public class Pomodoro.Timer.Pomodoro : Object {
     public signal void skip_forward ();
     public signal void skip_backward ();
     public signal void finished ();
+    public signal void time_changed ();
 
     public bool is_paused () {
         return timer == null && last_remaining_time > 0;
@@ -107,7 +117,7 @@ public class Pomodoro.Timer.Pomodoro : Object {
             break;
         }
 
-        if (auto_start_next_interval) {
+        if (autostart_interval) {
             start ();
         }
     }

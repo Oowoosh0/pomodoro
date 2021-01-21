@@ -24,10 +24,29 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
     }
 
      construct {
-        pomodoro = new Timer.Pomodoro(10, 5);
+        pomodoro = new Timer.Pomodoro (10, 5);
+        Application.settings.bind (
+            "work-time-minutes",
+            pomodoro,
+            "work_interval_minutes",
+            GLib.SettingsBindFlags.GET
+        );
+        Application.settings.bind (
+            "break-time-minutes",
+            pomodoro,
+            "break_interval_minutes",
+            GLib.SettingsBindFlags.GET
+        );
+        Application.settings.bind (
+            "autostart-interval",
+            pomodoro,
+            "autostart_interval",
+            GLib.SettingsBindFlags.GET
+        );
         pomodoro.start.connect (on_pomodoro_start);
         pomodoro.pause.connect (on_pomodoro_pause);
         pomodoro.finished.connect (on_pomodoro_finished);
+        pomodoro.time_changed.connect (on_time_change);
 
         var header_bar = new Gtk.HeaderBar () {
             decoration_layout = "close:",
@@ -160,6 +179,12 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
 
      private void on_pomodoro_skip_backward () {
 
+     }
+
+     private void on_time_change () {
+         if (!pomodoro.is_running () & !pomodoro.is_paused ()) {
+             timer_label.set_label_seconds (pomodoro.get_next_interval_length ());
+         }
      }
 
      private void show_preferences_dialog () {
