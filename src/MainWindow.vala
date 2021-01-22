@@ -1,5 +1,5 @@
 public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
-    private Timer.Pomodoro pomodoro;
+    private Timer.PomodoroTimer pomodoro;
     private Widgets.TimerLabel timer_label;
     private Gtk.Button start_pause_button;
     private Widgets.PreferencesDialog? preferences_dialog = null;
@@ -24,17 +24,17 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
     }
 
      construct {
-        pomodoro = new Timer.Pomodoro (1500, 300);
+        pomodoro = new Timer.PomodoroTimer ();
         Application.settings.bind (
             "work-time-minutes",
             pomodoro,
-            "work_interval_minutes",
+            "work_duration_minutes",
             GLib.SettingsBindFlags.GET
         );
         Application.settings.bind (
             "break-time-minutes",
             pomodoro,
-            "break_interval_minutes",
+            "break_duration_minutes",
             GLib.SettingsBindFlags.GET
         );
         Application.settings.bind (
@@ -43,11 +43,10 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
             "autostart_interval",
             GLib.SettingsBindFlags.GET
         );
-        pomodoro.start.connect (on_pomodoro_start);
-        pomodoro.pause.connect (on_pomodoro_pause);
-        pomodoro.finished.connect (on_pomodoro_finished);
-        pomodoro.time_changed.connect (on_time_change);
-        pomodoro.interval_switch.connect (on_interval_switch);
+        pomodoro.start.connect_after (on_pomodoro_start);
+        pomodoro.pause.connect_after (on_pomodoro_pause);
+        pomodoro.finished.connect_after (on_pomodoro_finished);
+        pomodoro.time_changed.connect_after (on_time_change);
 
         var header_bar = new Gtk.HeaderBar () {
             decoration_layout = "close:",
@@ -75,7 +74,7 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
         header_grid.add (header_bar);
 
         timer_label = new Widgets.TimerLabel ();
-        timer_label.set_label_seconds (pomodoro.work_time_seconds);
+        timer_label.set_label_seconds (pomodoro.get_remaining_time ());
         timer_label.yalign = 1;
 
         var skip_backward_button = new Gtk.Button.from_icon_name (
@@ -83,7 +82,7 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
             Gtk.IconSize.DIALOG
         );
         skip_backward_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
-        skip_backward_button.clicked.connect (() => pomodoro.skip_backward ());
+        skip_backward_button.clicked.connect (() => on_pomodoro_skip_backward ());
 
         start_pause_button = new Gtk.Button.from_icon_name (
             "media-playback-start-symbolic",
@@ -98,7 +97,7 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
             Gtk.IconSize.DIALOG
         );
         skip_forward_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
-        skip_forward_button.clicked.connect (() => pomodoro.skip_forward ());
+        skip_forward_button.clicked.connect (() => on_pomodoro_skip_forward ());
 
         var timer_controls = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         timer_controls.halign = Gtk.Align.CENTER;
@@ -149,6 +148,8 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
             this.set_keep_above (true);
             this.set_keep_above (false);
         }
+
+        on_interval_switch ();
      }
 
      private void on_interval_switch () {
@@ -158,18 +159,8 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
         );
         start_pause_button.set_image (start_icon);
 
-        string bg_color = WORK_BG_COLOR;
-        switch (pomodoro.state) {
-        case Timer.PomodoroState.WORK:
-            bg_color = WORK_BG_COLOR;
-            break;
-        case Timer.PomodoroState.BREAK:
-            bg_color = BREAK_BG_COLOR;
-            break;
-        }
-
         var css_provider = new Gtk.CssProvider ();
-        var break_css = BG_CSS.printf (bg_color);
+        var break_css = BG_CSS.printf (pomodoro.interval_color ());
         try {
             css_provider.load_from_data (break_css, break_css.length);
             Gtk.StyleContext.add_provider_for_screen (
@@ -180,17 +171,21 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
         } catch (GLib.Error e) {
             return;
         }
-        timer_label.set_label_seconds (pomodoro.get_next_interval_length ());
+        timer_label.set_label_seconds (pomodoro.get_remaining_time ());
+     }
+
+     private void on_pomodoro_skip_forward () {
+         pomodoro.skip_forward ();
+         on_interval_switch ();
      }
 
      private void on_pomodoro_skip_backward () {
-
+        pomodoro.skip_backward ();
+        on_interval_switch ();
      }
 
      private void on_time_change () {
-         if (!pomodoro.is_running () & !pomodoro.is_paused ()) {
-             timer_label.set_label_seconds (pomodoro.get_next_interval_length ());
-         }
+        timer_label.set_label_seconds (pomodoro.get_remaining_time ());
      }
 
      private void show_preferences_dialog () {

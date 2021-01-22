@@ -16,8 +16,12 @@ executable(
     'src/NotificationManager.vala',
     'src/Widgets/TimerLabel.vala',
     'src/Widgets/PreferencesDialog.vala',
-    'src/Timer/Pomodoro.vala',
+    'src/Timer/PomodoroTimer.vala',
     'src/Timer/PomodoroState.vala',
+    'src/Timer/Interval.vala',
+    'src/Timer/IntervalState.vala',
+    'src/Timer/WorkInterval.vala',
+    'src/Timer/BreakInterval.vala',
     dependencies : [
         dependency('gtk+-3.0')
     ]
