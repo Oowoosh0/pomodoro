@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2021 Moriz Mertens <mail@oowoo.sh> -->
+<component type="desktop">
+  <id>com.github.oowoosh0.pomodoro</id>
+  <metadata_license>CC0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>Pomodoro</name>
+  <developer_name>Moriz Mertens (@oowoosh0)</developer_name>
+  <update_contact>mail@oowoo.sh</update_contact>
+  <url type="homepage">https://github.com/oowoosh0/pomodoro</url>
+  <url type="bugtracker">https://github.com/oowoosh0/pomodoro/issues</url>
+  <summary>A simple Pomodoro time management app</summary>
+  <description>
+    <p>
+      The Pomodoro Technique is a very simple method to ensure you are taking
+      enough breaks while working. This simple App helps you to keep track off
+      when it is time for a break and when it is time to start working again.
+    </p>
+  </description>
+  <screenshots>
+    <screenshot type="default">
+      <image></image>
+    </screenshot>
+  </screenshots>
+  <custom>
+    <value key="x-appcenter-color-primary">#007367</value>
+    <value key="x-appcenter-color-primary-text">#ffffff</value>
+    <value key="x-appcenter-suggested-price">0</value>
+  </custom>
+  <content_rating type="oars-1.1" />
+</component>
