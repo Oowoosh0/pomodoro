@@ -17,7 +17,6 @@ executable(
     'src/Widgets/TimerLabel.vala',
     'src/Widgets/PreferencesDialog.vala',
     'src/Timer/PomodoroTimer.vala',
-    'src/Timer/PomodoroState.vala',
     'src/Timer/Interval.vala',
     'src/Timer/IntervalState.vala',
     'src/Timer/WorkInterval.vala',
