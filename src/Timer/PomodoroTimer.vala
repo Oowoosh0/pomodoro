@@ -95,5 +95,4 @@ public class Pomodoro.Timer.PomodoroTimer : Object {
     public string interval_color () {
         return interval.color ();
     }
-
 }

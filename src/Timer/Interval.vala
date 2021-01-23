@@ -15,12 +15,6 @@ public abstract class Pomodoro.Timer.Interval : Object {
         this.duration = duration;
     }
 
-    ~Interval () {
-        if (timer != null) {
-            timer.destroy ();
-        }
-    }
-
     public void start () {
         int interval_duration = this.duration;
         if (state == IntervalState.PAUSED) {
@@ -37,13 +31,8 @@ public abstract class Pomodoro.Timer.Interval : Object {
     }
 
     public void pause () {
-        last_remaining_time = get_remaining_time ();
+        destroy_timer ();
         state = IntervalState.PAUSED;
-
-        if (timer != null) {
-            timer.destroy ();
-        }
-        timer = null;
     }
 
     public int get_remaining_time () {
@@ -68,6 +57,19 @@ public abstract class Pomodoro.Timer.Interval : Object {
     public abstract Interval next ();
 
     public abstract Interval previous ();
-    
+
     public abstract string color ();
+
+    protected void destroy () {
+        destroy_timer ();
+        state = IntervalState.DESTROYED;
+    }
+
+    private void destroy_timer () {
+        last_remaining_time = get_remaining_time ();
+        if (timer != null) {
+            timer.destroy ();
+        }
+        timer = null;
+    }
 }

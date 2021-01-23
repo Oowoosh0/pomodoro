@@ -5,14 +5,17 @@ public class Pomodoro.Timer.BreakInterval : Interval {
     }
 
     public override Interval reset () {
+        base.destroy ();
         return new BreakInterval (parent_timer);
     }
 
     public override Interval previous () {
+        base.destroy ();
         return new WorkInterval (parent_timer);
     }
 
     public override Interval next () {
+        base.destroy ();
         return new WorkInterval (parent_timer);
     }
 
