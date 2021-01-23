@@ -1,7 +1,7 @@
 public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
     private Timer.PomodoroTimer pomodoro;
     private Widgets.TimerLabel timer_label;
-    private Gtk.Button start_pause_button;
+    private StartPauseButton start_pause_button;
     private Widgets.PreferencesDialog? preferences_dialog = null;
     private const string WORK_BG_COLOR = "#007367";
     private const string BREAK_BG_COLOR = "#c6262e";
@@ -84,12 +84,7 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
         skip_backward_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
         skip_backward_button.clicked.connect (() => on_pomodoro_skip_backward ());
 
-        start_pause_button = new Gtk.Button.from_icon_name (
-            "media-playback-start-symbolic",
-            Gtk.IconSize.DIALOG
-        );
-        start_pause_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
-        start_pause_button.set_can_default (true);
+        start_pause_button = new StartPauseButton ();
         start_pause_button.clicked.connect (() => pomodoro.start_pause_toggle ());
 
         var skip_forward_button = new Gtk.Button.from_icon_name (
@@ -120,11 +115,7 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
      }
 
      private void on_pomodoro_start () {
-        Gtk.Image pause_icon = new Gtk.Image.from_icon_name (
-            "media-playback-pause-symbolic",
-            Gtk.IconSize.DIALOG
-        );
-        start_pause_button.set_image (pause_icon);
+        start_pause_button.set_pause_image ();
 
          Timeout.add(200, () => {
              timer_label.set_label_seconds (pomodoro.get_remaining_time ());
@@ -133,11 +124,7 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
      }
 
      private void on_pomodoro_pause () {
-        Gtk.Image start_icon = new Gtk.Image.from_icon_name (
-            "media-playback-start-symbolic",
-            Gtk.IconSize.DIALOG
-        );
-        start_pause_button.set_image (start_icon);
+        start_pause_button.set_start_image ();
      }
 
      private void on_pomodoro_finished () {
@@ -149,16 +136,13 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
             this.set_keep_above (false);
         }
 
+        if (!Application.settings.get_boolean ("autostart-interval")) {
+            start_pause_button.set_start_image ();
+        }
         on_interval_switch ();
      }
 
      private void on_interval_switch () {
-         Gtk.Image start_icon = new Gtk.Image.from_icon_name (
-            "media-playback-start-symbolic",
-            Gtk.IconSize.DIALOG
-        );
-        start_pause_button.set_image (start_icon);
-
         var css_provider = new Gtk.CssProvider ();
         var break_css = BG_CSS.printf (pomodoro.interval_color ());
         try {
@@ -176,11 +160,13 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
 
      private void on_pomodoro_skip_forward () {
          pomodoro.skip_forward ();
+         start_pause_button.set_start_image ();
          on_interval_switch ();
      }
 
      private void on_pomodoro_skip_backward () {
         pomodoro.skip_backward ();
+        start_pause_button.set_start_image ();
         on_interval_switch ();
      }
 
@@ -200,4 +186,29 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
 
          preferences_dialog.present ();
      }
+
+    private class StartPauseButton : Gtk.Button {
+        public StartPauseButton () {
+            image = new Gtk.Image.from_icon_name (
+                "media-playback-start-symbolic",
+                Gtk.IconSize.DIALOG
+            );
+            get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+            set_can_default (true);
+        }
+
+        public void set_start_image () {
+            image = new Gtk.Image.from_icon_name (
+                "media-playback-start-symbolic",
+                Gtk.IconSize.DIALOG
+            );
+        }
+
+        public void set_pause_image () {
+            image = new Gtk.Image.from_icon_name (
+                "media-playback-pause-symbolic",
+                Gtk.IconSize.DIALOG
+            );
+        }
+    }
 }
