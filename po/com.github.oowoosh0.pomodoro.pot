@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.oowoosh0.pomodoro\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-23 16:36+0100\n"
+"POT-Creation-Date: 2021-01-24 15:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,4 +51,39 @@ msgstr ""
 
 #: src/Widgets/PreferencesDialog.vala:48
 msgid "Close"
+msgstr ""
+
+#: data/pomodoro.desktop.in:3 data/pomodoro.appdata.xml.in:7
+msgid "Pomodoro"
+msgstr ""
+
+#: data/pomodoro.desktop.in:4
+msgid "Pomodoro Timer"
+msgstr ""
+
+#: data/pomodoro.desktop.in:5
+msgid "Timer for pomodoro technique"
+msgstr ""
+
+#: data/pomodoro.desktop.in:8
+msgid "application-default-icon"
+msgstr ""
+
+#: data/pomodoro.desktop.in:11
+msgid "Timer;"
+msgstr ""
+
+#: data/pomodoro.appdata.xml.in:8
+msgid "Moriz Mertens (@oowoosh0)"
+msgstr ""
+
+#: data/pomodoro.appdata.xml.in:12
+msgid "A simple Pomodoro time management app"
+msgstr ""
+
+#: data/pomodoro.appdata.xml.in:14
+msgid ""
+"The Pomodoro Technique is a very simple method to ensure you are taking "
+"enough breaks while working. This simple App helps you to keep track off "
+"when it is time for a break and when it is time to start working again."
 msgstr ""

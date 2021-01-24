@@ -4,14 +4,21 @@ install_data (
     rename: meson.project_name () + '.gschema.xml'
 )
 
-install_data(
-    'pomodoro.desktop',
-    install_dir: join_paths (get_option('datadir'), 'applications'),
-    rename: meson.project_name() + '.desktop'
+#Translate and install our .desktop file
+i18n.merge_file(
+    input: 'pomodoro.desktop.in',
+    output: meson.project_name() + '.desktop',
+    po_dir: join_paths(meson.source_root(), 'po'),
+    type: 'desktop',
+    install: true,
+    install_dir: join_paths(get_option('datadir'), 'applications')
 )
 
-install_data(
-    'pomodoro.appdata.xml',
-    install_dir: join_paths(get_option('datadir'), 'metainfo'),
-    rename: meson.project_name() + '.appdata.xml'
+#Translate and install our .appdata file
+i18n.merge_file(
+    input: 'pomodoro.appdata.xml.in',
+    output: meson.project_name() + '.appdata.xml',
+    po_dir: join_paths(meson.source_root(), 'po'),
+    install: true,
+    install_dir: join_paths(get_option('datadir'), 'metainfo')
 )

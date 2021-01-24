@@ -1,1 +1,3 @@
 src/Widgets/PreferencesDialog.vala
+data/pomodoro.desktop.in
+data/pomodoro.appdata.xml.in
