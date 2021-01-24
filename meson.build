@@ -27,7 +27,8 @@ executable(
     dependencies : [
         dependency('glib-2.0'),
         dependency('gtk+-3.0')
-    ]
+    ],
+    install: true
 )
 
 meson.add_install_script('meson/post_install.py')
