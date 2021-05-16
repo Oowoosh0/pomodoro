@@ -1,4 +1,4 @@
-public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
+public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
     private Timer.PomodoroTimer pomodoro;
     private Widgets.TimerLabel timer_label;
     private StartPauseButton start_pause_button;
@@ -24,6 +24,8 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
     }
 
      construct {
+        Hdy.init();
+        
         pomodoro = new Timer.PomodoroTimer ();
         Application.settings.bind (
             "work-time-minutes",
@@ -48,7 +50,7 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
         pomodoro.finished.connect_after (on_pomodoro_finished);
         pomodoro.time_changed.connect_after (on_time_change);
 
-        var header_bar = new Gtk.HeaderBar () {
+        var header_bar = new Hdy.HeaderBar () {
             decoration_layout = "close:",
             show_close_button = true,
             hexpand = true
