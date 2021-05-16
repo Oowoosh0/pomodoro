@@ -15,8 +15,6 @@
 }
 
 .timer-box {
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
     box-shadow:
         inset 1px 0 0 0 shade (@colorBackground, 1.07),
         inset -1px 0 0 0 shade (@colorBackground, 1.07),
