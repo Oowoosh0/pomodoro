@@ -1,7 +1,7 @@
 public class Pomodoro.Timer.PomodoroTimer : Object {
     private Interval interval;
-    private int _work_duration_seconds;
-    private int _break_duration_seconds;
+    private int _work_duration_seconds = 1500;
+    private int _break_duration_seconds = 300;
 
     public int work_duration_seconds {
         get { return _work_duration_seconds; }
@@ -11,7 +11,6 @@ public class Pomodoro.Timer.PomodoroTimer : Object {
                 time_changed ();
             }
         }
-        default = 1500;
     }
 
     public int break_duration_seconds {
@@ -22,7 +21,6 @@ public class Pomodoro.Timer.PomodoroTimer : Object {
                 time_changed ();
             }
         }
-        default = 300;
     }
 
     public int work_duration_minutes {
