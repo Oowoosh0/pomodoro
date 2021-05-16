@@ -10,7 +10,7 @@ public abstract class Pomodoro.Timer.Interval : Object {
         default = IntervalState.BEFORE_START;
     }
 
-    public Interval (PomodoroTimer parent, int duration) {
+    protected Interval (PomodoroTimer parent, int duration) {
         this.parent_timer = parent;
         this.duration = duration;
     }
