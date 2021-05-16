@@ -101,7 +101,7 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
 
         var main_grid = new Gtk.Grid ();
         main_grid.attach (header_bar, 0, 0);
-        main_grid.attach (box, 1, 0);
+        main_grid.attach (box, 0, 1);
 
         var window_handle = new Hdy.WindowHandle ();
         window_handle.add (main_grid);
