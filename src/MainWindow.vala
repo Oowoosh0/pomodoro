@@ -92,9 +92,7 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         timer_controls.pack_start (start_pause_button, false, false, 0);
         timer_controls.pack_start (skip_forward_button, false, false, 0);
 
-        var box = new Gtk.Box () {
-            spacing = 0,
-            orientation = Gtk.Orientation.VERTICAL,
+        var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0) {
             vexpand = true
         };
 
