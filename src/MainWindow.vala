@@ -25,7 +25,7 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
 
      construct {
         Hdy.init();
-        
+
         pomodoro = new Timer.PomodoroTimer ();
         Application.settings.bind (
             "work-time-minutes",
@@ -52,8 +52,7 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
 
         var header_bar = new Hdy.HeaderBar () {
             decoration_layout = "close:",
-            show_close_button = true,
-            hexpand = true
+            show_close_button = true
         };
 
         var menu_button = new Gtk.Button.from_icon_name (
@@ -65,15 +64,6 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         });
 
         header_bar.pack_end (menu_button);
-
-        var header_grid = new Gtk.Grid ();
-        var header_grid_context = header_grid.get_style_context ();
-        header_grid_context.add_class ("main-titlebar");
-        header_grid_context.add_class ("default-decoration");
-        header_grid_context.add_class ("bg-color");
-        header_grid_context.add_class (Gtk.STYLE_CLASS_FLAT);
-
-        header_grid.add (header_bar);
 
         timer_label = new Widgets.TimerLabel ();
         timer_label.set_label_seconds (pomodoro.get_remaining_time ());
@@ -109,11 +99,16 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         box.pack_start (timer_label, true, true, 0);
         box.pack_start (timer_controls, true, false, 0);
 
-        set_titlebar (header_grid);
-        add (box);
+        var main_grid = new Gtk.Grid ();
+        main_grid.attach (header_bar, 0, 0);
+        main_grid.attach (box, 1, 0);
+
+        var window_handle = new Hdy.WindowHandle ();
+        window_handle.add (main_grid);
+
+        add (window_handle);
         set_default (start_pause_button);
         set_focus (start_pause_button);
-        get_style_context ().add_class ("rounded");
      }
 
      private void on_pomodoro_start () {
