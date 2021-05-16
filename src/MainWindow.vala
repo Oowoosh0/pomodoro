@@ -92,14 +92,22 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         timer_controls.pack_start (start_pause_button, false, false, 0);
         timer_controls.pack_start (skip_forward_button, false, false, 0);
 
-        var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+        var box = new Gtk.Box () {
+            spacing = 0,
+            orientation = Gtk.Orientation.VERTICAL,
+            vexpand = true
+        };
+
         var box_context = box.get_style_context ();
         box_context.add_class ("timer-box");
         box_context.add_class ("bg-color");
         box.pack_start (timer_label, true, true, 0);
         box.pack_start (timer_controls, true, false, 0);
 
-        var main_grid = new Gtk.Grid ();
+        var main_grid = new Gtk.Grid () {
+            hexpand = true
+        };
+
         main_grid.attach (header_bar, 0, 0);
         main_grid.attach (box, 0, 1);
 
