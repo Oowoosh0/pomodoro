@@ -58,6 +58,7 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         var header_bar_context = header_bar.get_style_context ();
         header_bar_context.add_class ("main-titlebar");
         header_bar_context.add_class ("bg-color");
+        header_bar_context.add_class (Gtk.STYLE_CLASS_FLAT);
 
         var menu_button = new Gtk.Button.from_icon_name (
             "open-menu-symbolic",
