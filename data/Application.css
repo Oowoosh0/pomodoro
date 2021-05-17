@@ -1,7 +1,6 @@
 @define-color colorBackground #007367;
 
 .main-titlebar {
-    border: none;
     box-shadow:
         inset 1px 0 0 0 shade (@colorBackground, 1.07),
         inset -1px 0 0 0 shade (@colorBackground, 1.07),
@@ -27,5 +26,5 @@
 }
 
 .button:focus {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.15);
 }
