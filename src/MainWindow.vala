@@ -75,7 +75,7 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
 
         var skip_backward_button = new Gtk.Button.from_icon_name (
             "media-skip-backward-symbolic",
-            Gtk.IconSize.DIALOG
+            Gtk.IconSize.DND
         );
         skip_backward_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
         skip_backward_button.clicked.connect (() => on_pomodoro_skip_backward ());
@@ -85,7 +85,7 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
 
         var skip_forward_button = new Gtk.Button.from_icon_name (
             "media-skip-forward-symbolic",
-            Gtk.IconSize.DIALOG
+            Gtk.IconSize.DND
         );
         skip_forward_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
         skip_forward_button.clicked.connect (() => on_pomodoro_skip_forward ());
@@ -199,7 +199,7 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         public StartPauseButton () {
             image = new Gtk.Image.from_icon_name (
                 "media-playback-start-symbolic",
-                Gtk.IconSize.DIALOG
+                Gtk.IconSize.DND
             );
             get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
             set_can_default (true);
@@ -208,14 +208,14 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         public void set_start_image () {
             image = new Gtk.Image.from_icon_name (
                 "media-playback-start-symbolic",
-                Gtk.IconSize.DIALOG
+                Gtk.IconSize.DND
             );
         }
 
         public void set_pause_image () {
             image = new Gtk.Image.from_icon_name (
                 "media-playback-pause-symbolic",
-                Gtk.IconSize.DIALOG
+                Gtk.IconSize.DND
             );
         }
     }
