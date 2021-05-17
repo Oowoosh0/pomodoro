@@ -1,0 +1,19 @@
+app-id: com.github.oowoosh0.pomodoro
+
+runtime: io.elementary.Platform
+runtime-version: 'daily'
+sdk: io.elementary.Sdk
+
+command: com.github.oowoosh0.pomodoro
+
+finish-args:
+  - '--share=ipc'
+  - '--socket=fallback-x11'
+  - '--socket=wayland'
+
+modules:
+  - name: pomodoro
+    buildsystem: meson
+    sources:
+      - type: dir
+        path: .
