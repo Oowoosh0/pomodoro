@@ -1,4 +1,4 @@
-public class Pomodoro.Widgets.PreferencesDialog : Gtk.Dialog {
+public class Pomodoro.Widgets.PreferencesDialog : Granite.Dialog {
     private Gtk.Stack stack;
 
     public PreferencesDialog (Gtk.Window? parent) {
