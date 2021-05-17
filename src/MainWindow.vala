@@ -63,6 +63,7 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
             "open-menu-symbolic",
             Gtk.IconSize.SMALL_TOOLBAR
         );
+        menu_button.get_style_context ().add_class ("button");
         menu_button.clicked.connect (() => {
             show_preferences_dialog ();
         });
@@ -78,6 +79,7 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
             Gtk.IconSize.DND
         );
         skip_backward_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        skip_backward_button.get_style_context ().add_class ("button");
         skip_backward_button.clicked.connect (() => on_pomodoro_skip_backward ());
 
         start_pause_button = new StartPauseButton ();
@@ -88,6 +90,7 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
             Gtk.IconSize.DND
         );
         skip_forward_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        skip_forward_button.get_style_context ().add_class ("button");
         skip_forward_button.clicked.connect (() => on_pomodoro_skip_forward ());
 
         var timer_controls = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
@@ -202,6 +205,7 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
                 Gtk.IconSize.DND
             );
             get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+            get_style_context ().add_class ("button");
             set_can_default (true);
         }
 
