@@ -17,8 +17,8 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         Object (
              application: application,
              title: "Pomodoro",
-             width_request: 450,
-             height_request: 450,
+             width_request: 350,
+             height_request: 350,
              resizable: false
         );
     }
