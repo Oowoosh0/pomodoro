@@ -24,6 +24,9 @@
     <screenshot>
       <image>https://raw.githubusercontent.com/Oowoosh0/pomodoro/main/data/media/screenshot-2.png</image>
     </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/Oowoosh0/pomodoro/main/data/media/screenshot-preferences.png</image>
+    </screenshot>
   </screenshots>
   <custom>
     <value key="x-appcenter-color-primary">#007367</value>
