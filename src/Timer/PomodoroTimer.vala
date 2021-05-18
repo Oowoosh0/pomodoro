@@ -34,13 +34,13 @@ public class Pomodoro.Timer.PomodoroTimer : Object {
     public bool autostart_interval {get; set; default = false;}
 
     public PomodoroTimer () {
-        interval = new WorkInterval(this);
+        interval = new WorkInterval (this);
     }
 
     public PomodoroTimer.seconds (int work_duration_seconds, int break_duration_seconds) {
         this.work_duration_seconds = work_duration_seconds;
         this.break_duration_seconds = break_duration_seconds;
-        interval = new WorkInterval(this);
+        interval = new WorkInterval (this);
     }
 
     public void start_pause_toggle () {

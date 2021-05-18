@@ -2,7 +2,7 @@ public class Pomodoro.Application : Gtk.Application {
     public MainWindow? main_window = null;
     public static GLib.Settings settings;
 
-     public Application () {
+    public Application () {
         Object (application_id: "com.github.oowoosh0.pomodoro");
     }
 
@@ -26,8 +26,8 @@ public class Pomodoro.Application : Gtk.Application {
         }
     }
 
-    public static int main(string[] args) {
+    public static int main (string[] args) {
         var application = new Application ();
-        return application.run(args);
+        return application.run (args);
     }
 }

@@ -15,16 +15,16 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
 
     public MainWindow (Gtk.Application application) {
         Object (
-             application: application,
-             title: "Pomodoro",
-             width_request: 350,
-             height_request: 350,
-             resizable: false
+            application: application,
+            title: "Pomodoro",
+            width_request: 350,
+            height_request: 350,
+            resizable: false
         );
     }
 
-     construct {
-        Hdy.init();
+    construct {
+        Hdy.init ();
 
         pomodoro = new Timer.PomodoroTimer ();
         Application.settings.bind (
@@ -124,23 +124,23 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         add (window_handle);
         set_default (start_pause_button);
         set_focus (start_pause_button);
-     }
+    }
 
-     private void on_pomodoro_start () {
+    private void on_pomodoro_start () {
         start_pause_button.set_pause_image ();
 
-         Timeout.add(200, () => {
-             timer_label.set_label_seconds (pomodoro.get_remaining_time ());
-             return pomodoro.is_running ();
-         });
-     }
+        Timeout.add (200, () => {
+            timer_label.set_label_seconds (pomodoro.get_remaining_time ());
+            return pomodoro.is_running ();
+        });
+    }
 
-     private void on_pomodoro_pause () {
+    private void on_pomodoro_pause () {
         start_pause_button.set_start_image ();
-     }
+    }
 
-     private void on_pomodoro_finished () {
-       NotificationManager.intervalFinished ();
+    private void on_pomodoro_finished () {
+        NotificationManager.interval_finished ();
 
         // dirty fix because present() doesn't work
         if (Application.settings.get_boolean ("raise-window")) {
@@ -152,9 +152,9 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
             start_pause_button.set_start_image ();
         }
         on_interval_switch ();
-     }
+    }
 
-     private void on_interval_switch () {
+    private void on_interval_switch () {
         var css_provider = new Gtk.CssProvider ();
         var break_css = BG_CSS.printf (pomodoro.interval_color ());
         try {
@@ -168,36 +168,36 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
             return;
         }
         timer_label.set_label_seconds (pomodoro.get_remaining_time ());
-     }
+    }
 
-     private void on_pomodoro_skip_forward () {
-         pomodoro.skip_forward ();
-         start_pause_button.set_start_image ();
-         on_interval_switch ();
-     }
+    private void on_pomodoro_skip_forward () {
+        pomodoro.skip_forward ();
+        start_pause_button.set_start_image ();
+        on_interval_switch ();
+    }
 
-     private void on_pomodoro_skip_backward () {
+    private void on_pomodoro_skip_backward () {
         pomodoro.skip_backward ();
         start_pause_button.set_start_image ();
         on_interval_switch ();
-     }
+    }
 
-     private void on_time_change () {
+    private void on_time_change () {
         timer_label.set_label_seconds (pomodoro.get_remaining_time ());
-     }
+    }
 
-     private void show_preferences_dialog () {
-         if (preferences_dialog == null) {
-             preferences_dialog = new Widgets.PreferencesDialog (this);
-             preferences_dialog.show_all ();
+    private void show_preferences_dialog () {
+        if (preferences_dialog == null) {
+            preferences_dialog = new Widgets.PreferencesDialog (this);
+            preferences_dialog.show_all ();
 
-             preferences_dialog.destroy.connect (() => {
-                 preferences_dialog = null;
-             });
-         }
+            preferences_dialog.destroy.connect (() => {
+                preferences_dialog = null;
+            });
+        }
 
-         preferences_dialog.present ();
-     }
+        preferences_dialog.present ();
+    }
 
     private class StartPauseButton : Gtk.Button {
         public StartPauseButton () {

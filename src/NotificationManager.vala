@@ -1,5 +1,5 @@
 public class Pomodoro.NotificationManager : Object {
-    public static void intervalFinished () {
+    public static void interval_finished () {
         if (Application.settings.get_boolean ("show-notifications")) {
             var notification = new Notification ("Pomodoro interval ended");
             GLib.Application.get_default ().send_notification (
