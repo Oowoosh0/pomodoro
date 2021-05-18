@@ -48,6 +48,8 @@ public abstract class Pomodoro.Timer.Interval : Object {
             int64 time_in_ns = timer.get_ready_time () - timer.get_time ();
             time_in_sec = (int) (time_in_ns / (1000 * 1000));
             break;
+        case IntervalState.DESTROYED:
+            break;
         }
         return time_in_sec;
     }
