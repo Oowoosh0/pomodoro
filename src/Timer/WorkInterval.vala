@@ -1,22 +1,19 @@
 public class Pomodoro.Timer.WorkInterval : Interval {
 
-    public WorkInterval (PomodoroTimer parent) {
-        base (parent, parent.work_duration_seconds);
+    public static int work_duration_min { get; set; default = 25;}
+
+    public WorkInterval () {
+        base (work_duration_min);
     }
 
     public override Interval reset () {
-        base.destroy ();
-        return new WorkInterval (parent_timer);
-    }
-
-    public override Interval previous () {
-        base.destroy ();
-        return new BreakInterval (parent_timer);
+        base.destroy_timer ();
+        return new WorkInterval ();
     }
 
     public override Interval next () {
-        base.destroy ();
-        return new BreakInterval (parent_timer);
+        base.destroy_timer ();
+        return new BreakInterval ();
     }
 
     public override string color () {

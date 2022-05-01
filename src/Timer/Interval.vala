@@ -1,30 +1,27 @@
 public abstract class Pomodoro.Timer.Interval : Object {
-    private int last_remaining_time = 0;
     private TimeoutSource? timer = null;
 
-    public PomodoroTimer parent_timer { get; private set; }
-    public int duration { get; private set; }
+    public int duration_sec { get; private set; }
+    public int duration_min {
+        get { return duration_sec % 60; }
+        set { duration_sec = value * 60; }
+    }
     public IntervalState state {
         get;
         private set;
         default = IntervalState.BEFORE_START;
     }
 
-    protected Interval (PomodoroTimer parent, int duration) {
-        this.parent_timer = parent;
-        this.duration = duration;
+    protected Interval (int duration_min) {
+        this.duration_min = duration_min;
     }
 
     public void start () {
-        int interval_duration = this.duration;
-        if (state == IntervalState.PAUSED) {
-            interval_duration = last_remaining_time;
-        }
         state = IntervalState.RUNNING;
 
-        timer = new TimeoutSource.seconds (interval_duration);
+        timer = new TimeoutSource.seconds (duration_sec);
         timer.set_callback (() => {
-            parent_timer.finished ();
+            finished ();
             return Source.REMOVE;
         });
         timer.attach (MainContext.get_thread_default ());
@@ -35,14 +32,22 @@ public abstract class Pomodoro.Timer.Interval : Object {
         state = IntervalState.PAUSED;
     }
 
+    public virtual signal void finished () {
+        state = IntervalState.FINISHED;
+    }
+
+    public bool is_running () {
+        return state == IntervalState.RUNNING;
+    }
+
     public int get_remaining_time () {
         int time_in_sec = 0;
         switch (state) {
         case IntervalState.BEFORE_START:
-            time_in_sec = duration;
+            time_in_sec = duration_sec;
             break;
         case IntervalState.PAUSED:
-            time_in_sec = last_remaining_time;
+            time_in_sec = duration_sec;
             break;
         case IntervalState.RUNNING:
             int64 time_in_ns = timer.get_ready_time () - timer.get_time ();
@@ -58,20 +63,14 @@ public abstract class Pomodoro.Timer.Interval : Object {
 
     public abstract Interval next ();
 
-    public abstract Interval previous ();
-
     public abstract string color ();
 
-    protected void destroy () {
-        destroy_timer ();
-        state = IntervalState.DESTROYED;
-    }
-
-    private void destroy_timer () {
-        last_remaining_time = get_remaining_time ();
+    protected void destroy_timer () {
+        duration_sec = get_remaining_time ();
         if (timer != null) {
             timer.destroy ();
         }
         timer = null;
+        state = IntervalState.DESTROYED;
     }
 }

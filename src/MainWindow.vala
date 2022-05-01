@@ -1,5 +1,5 @@
 public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
-    private Timer.PomodoroTimer pomodoro;
+    private Timer.Interval pomodoro_interval;
     private Widgets.TimerLabel timer_label;
     private StartPauseButton start_pause_button;
     private Widgets.PreferencesDialog? preferences_dialog = null;
@@ -26,7 +26,8 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
     construct {
         Hdy.init ();
 
-        pomodoro = new Timer.PomodoroTimer ();
+        pomodoro_interval = new Timer.WorkInterval ();
+        /*
         Application.settings.bind (
             "work-time-minutes",
             pomodoro,
@@ -45,10 +46,9 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
             "autostart_interval",
             GLib.SettingsBindFlags.GET
         );
-        pomodoro.start.connect_after (on_pomodoro_start);
-        pomodoro.pause.connect_after (on_pomodoro_pause);
-        pomodoro.finished.connect_after (on_pomodoro_finished);
-        pomodoro.time_changed.connect_after (on_time_change);
+        */
+
+        pomodoro_interval.finished.connect_after (on_pomodoro_finished);
 
         var header_bar = new Hdy.HeaderBar () {
             decoration_layout = "close:",
@@ -72,11 +72,11 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         header_bar.pack_end (menu_button);
 
         timer_label = new Widgets.TimerLabel ();
-        timer_label.set_label_seconds (pomodoro.get_remaining_time ());
+        timer_label.set_label_seconds (pomodoro_interval.get_remaining_time ());
         timer_label.yalign = 1;
 
         start_pause_button = new StartPauseButton ();
-        start_pause_button.clicked.connect (() => pomodoro.start_pause_toggle ());
+        start_pause_button.clicked.connect (() => on_start_pause_toggle ());
 
         var skip_forward_button = new Gtk.Button.from_icon_name (
             "media-skip-forward-symbolic",
@@ -84,7 +84,7 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         );
         skip_forward_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
         skip_forward_button.get_style_context ().add_class ("button");
-        skip_forward_button.clicked.connect (() => on_pomodoro_skip_forward ());
+        skip_forward_button.clicked.connect (() => on_skip_forward ());
 
         var timer_controls = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         timer_controls.halign = Gtk.Align.CENTER;
@@ -113,21 +113,31 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         window_handle.add (main_grid);
 
         add (window_handle);
-        set_default (start_pause_button);
-        set_focus (start_pause_button);
+        //set_default (start_pause_button);
+        //set_focus (start_pause_button);
     }
 
-    private void on_pomodoro_start () {
+    public void on_start_pause_toggle () {
+        if (pomodoro_interval.is_running ()) {
+            on_pause ();
+        } else {
+            on_start ();
+        }
+    }
+
+    private void on_start () {
         start_pause_button.set_pause_image ();
+        pomodoro_interval.start();
 
         Timeout.add (200, () => {
-            timer_label.set_label_seconds (pomodoro.get_remaining_time ());
-            return pomodoro.is_running ();
+            timer_label.set_label_seconds (pomodoro_interval.get_remaining_time ());
+            return pomodoro_interval.is_running ();
         });
     }
 
-    private void on_pomodoro_pause () {
+    private void on_pause () {
         start_pause_button.set_start_image ();
+        pomodoro_interval.pause();
     }
 
     private void on_pomodoro_finished () {
@@ -139,15 +149,13 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
             this.set_keep_above (false);
         }
 
-        if (!Application.settings.get_boolean ("autostart-interval")) {
-            start_pause_button.set_start_image ();
-        }
         on_interval_switch ();
     }
 
     private void on_interval_switch () {
+        pomodoro_interval = pomodoro_interval.next ();
         var css_provider = new Gtk.CssProvider ();
-        var break_css = BG_CSS.printf (pomodoro.interval_color ());
+        var break_css = BG_CSS.printf (pomodoro_interval.color ());
         try {
             css_provider.load_from_data (break_css, break_css.length);
             Gtk.StyleContext.add_provider_for_screen (
@@ -158,17 +166,21 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         } catch (GLib.Error e) {
             return;
         }
-        timer_label.set_label_seconds (pomodoro.get_remaining_time ());
+        timer_label.set_label_seconds (pomodoro_interval.get_remaining_time ());
+
+        if (Application.settings.get_boolean ("autostart-interval")) {
+            on_start ();
+        } else {
+            start_pause_button.set_start_image ();
+        }
     }
 
-    private void on_pomodoro_skip_forward () {
-        pomodoro.skip_forward ();
-        start_pause_button.set_start_image ();
+    private void on_skip_forward () {
         on_interval_switch ();
     }
 
     private void on_time_change () {
-        timer_label.set_label_seconds (pomodoro.get_remaining_time ());
+        timer_label.set_label_seconds (pomodoro_interval.get_remaining_time ());
     }
 
     private void show_preferences_dialog () {
