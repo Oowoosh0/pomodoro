@@ -17,8 +17,8 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         Object (
             application: application,
             title: "Pomodoro",
-            width_request: 350,
-            height_request: 350,
+            width_request: 500,
+            height_request: 500,
             resizable: false
         );
     }
@@ -75,14 +75,6 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         timer_label.set_label_seconds (pomodoro.get_remaining_time ());
         timer_label.yalign = 1;
 
-        var skip_backward_button = new Gtk.Button.from_icon_name (
-            "media-skip-backward-symbolic",
-            Gtk.IconSize.DND
-        );
-        skip_backward_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
-        skip_backward_button.get_style_context ().add_class ("button");
-        skip_backward_button.clicked.connect (() => on_pomodoro_skip_backward ());
-
         start_pause_button = new StartPauseButton ();
         start_pause_button.clicked.connect (() => pomodoro.start_pause_toggle ());
 
@@ -96,7 +88,6 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
 
         var timer_controls = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         timer_controls.halign = Gtk.Align.CENTER;
-        timer_controls.pack_start (skip_backward_button, false, false, 0);
         timer_controls.pack_start (start_pause_button, false, false, 0);
         timer_controls.pack_start (skip_forward_button, false, false, 0);
 
@@ -176,12 +167,6 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         on_interval_switch ();
     }
 
-    private void on_pomodoro_skip_backward () {
-        pomodoro.skip_backward ();
-        start_pause_button.set_start_image ();
-        on_interval_switch ();
-    }
-
     private void on_time_change () {
         timer_label.set_label_seconds (pomodoro.get_remaining_time ());
     }
@@ -203,7 +188,7 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         public StartPauseButton () {
             image = new Gtk.Image.from_icon_name (
                 "media-playback-start-symbolic",
-                Gtk.IconSize.DND
+                Gtk.IconSize.DIALOG
             );
             get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
             get_style_context ().add_class ("button");
@@ -213,14 +198,14 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         public void set_start_image () {
             image = new Gtk.Image.from_icon_name (
                 "media-playback-start-symbolic",
-                Gtk.IconSize.DND
+                Gtk.IconSize.DIALOG
             );
         }
 
         public void set_pause_image () {
             image = new Gtk.Image.from_icon_name (
                 "media-playback-pause-symbolic",
-                Gtk.IconSize.DND
+                Gtk.IconSize.DIALOG
             );
         }
     }

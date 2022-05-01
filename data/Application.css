@@ -8,10 +8,9 @@
 }
 
 .timer-label {
-    font-family: "Roboto Mono", monospace;
+    font-family: "Inter";
     font-size: 36pt;
-    font-weight: 500;
-    letter-spacing: -0.04em;
+    font-feature-settings: "tnum";
 }
 
 .timer-box {
