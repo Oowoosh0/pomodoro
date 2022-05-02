@@ -58,7 +58,7 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
             GLib.SettingsBindFlags.GET
         );
 
-        pomodoro_interval = new Timer.WorkInterval ();
+        pomodoro_interval = new Timer.WorkInterval (1);
         pomodoro_interval.finished.connect_after (on_pomodoro_finished);
 
         var header_bar = new Hdy.HeaderBar () {

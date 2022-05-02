@@ -23,6 +23,7 @@ executable(
     'src/Timer/IntervalState.vala',
     'src/Timer/WorkInterval.vala',
     'src/Timer/BreakInterval.vala',
+    'src/Timer/LongBreakInterval.vala',
     dependencies : [
         dependency('glib-2.0'),
         dependency('gtk+-3.0'),

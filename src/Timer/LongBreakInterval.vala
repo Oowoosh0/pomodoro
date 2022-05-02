@@ -1,13 +1,13 @@
-public class Pomodoro.Timer.BreakInterval : Interval {
-    public static int break_duration_min = 5;
+public class Pomodoro.Timer.LongBreakInterval : Interval {
+    public static int break_duration_min = 15;
 
-    public BreakInterval (int index) {
+    public LongBreakInterval (int index) {
         base (break_duration_min, index);
     }
 
     public override Interval reset () {
         base.destroy_timer ();
-        return new BreakInterval (this.index);
+        return new LongBreakInterval (this.index);
     }
 
     public override Interval next () {
@@ -16,6 +16,6 @@ public class Pomodoro.Timer.BreakInterval : Interval {
     }
 
     public override string color () {
-        return "#cc3b02";
+        return "#a10705";
     }
 }

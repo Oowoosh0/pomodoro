@@ -1,6 +1,7 @@
 public abstract class Pomodoro.Timer.Interval : Object {
     private TimeoutSource? timer = null;
 
+    public int index;
     public int duration_sec { get; private set; }
     public int duration_min {
         get { return duration_sec % 60; }
@@ -12,8 +13,9 @@ public abstract class Pomodoro.Timer.Interval : Object {
         default = IntervalState.BEFORE_START;
     }
 
-    protected Interval (int duration_min) {
+    protected Interval (int duration_min, int index) {
         this.duration_min = duration_min;
+        this.index = index;
     }
 
     public void start () {
