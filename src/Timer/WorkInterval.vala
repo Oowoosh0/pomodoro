@@ -1,5 +1,6 @@
 public class Pomodoro.Timer.WorkInterval : Interval {
     public static int work_duration_min = 25;
+    public static int intervals_to_long_break = 4;
 
     public WorkInterval (int index) {
         base (work_duration_min, index);
@@ -13,7 +14,7 @@ public class Pomodoro.Timer.WorkInterval : Interval {
     public override Interval next () {
         base.destroy_timer ();
         Interval next_break_interval = new BreakInterval (this.index);
-        if (index % 4 == 0) {
+        if (index % intervals_to_long_break == 0) {
             next_break_interval = new LongBreakInterval (this.index);
         }
         return next_break_interval;

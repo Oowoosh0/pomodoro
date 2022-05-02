@@ -25,6 +25,20 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
             on_time_change ();
         }
     }
+    public int long_break_duration_min {
+        get { return Timer.LongBreakInterval.break_duration_min; }
+        set { 
+            Timer.LongBreakInterval.break_duration_min = value;
+            on_time_change ();
+        }
+    }
+    public int intervals_to_long_break {
+        get { return Timer.WorkInterval.intervals_to_long_break; }
+        set { 
+            Timer.WorkInterval.intervals_to_long_break = value;
+            on_time_change ();
+        }
+    }
 
     public MainWindow (Gtk.Application application) {
         Object (
@@ -52,9 +66,21 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
             GLib.SettingsBindFlags.GET
         );
         Application.settings.bind (
+            "long-break-time-minutes",
+            this,
+            "long_break_duration_min",
+            GLib.SettingsBindFlags.GET
+        );
+        Application.settings.bind (
             "autostart-interval",
             this,
             "autostart_interval",
+            GLib.SettingsBindFlags.GET
+        );
+        Application.settings.bind (
+            "intervals-to-long-break",
+            this,
+            "intervals_to_long_break",
             GLib.SettingsBindFlags.GET
         );
 

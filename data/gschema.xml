@@ -3,13 +3,23 @@
   <schema path="/com/github/oowoosh0/pomodoro/" id="com.github.oowoosh0.pomodoro">
     <key name="work-time-minutes" type="i">
       <default>25</default>
-      <summary>Duration of work time in seconds</summary>
-      <description>Duration of work time in seconds</description>
+      <summary>Duration of work time in minutes</summary>
+      <description>Duration of work time in minutes</description>
     </key>
     <key name="break-time-minutes" type="i">
       <default>5</default>
-      <summary>Duration of break time in seconds</summary>
-      <description>Duration of break time in seconds</description>
+      <summary>Duration of break time in minutes</summary>
+      <description>Duration of break time in minutes</description>
+    </key>
+    <key name="long-break-time-minutes" type="i">
+      <default>15</default>
+      <summary>Duration of long break time in minutes</summary>
+      <description>Duration of long break time in minutes</description>
+    </key>
+    <key name="intervals-to-long-break" type="i">
+      <default>4</default>
+      <summary>Number of work intervals before a long break</summary>
+      <description>Number of work intervals before a long break</description>
     </key>
     <key name="autostart-interval" type="b">
       <default>false</default>
