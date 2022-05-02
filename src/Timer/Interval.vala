@@ -39,6 +39,10 @@ public abstract class Pomodoro.Timer.Interval : Object {
     public bool is_running () {
         return state == IntervalState.RUNNING;
     }
+    
+    public bool is_before_start () {
+        return state == IntervalState.BEFORE_START;
+    }
 
     public int get_remaining_time () {
         int time_in_sec = 0;

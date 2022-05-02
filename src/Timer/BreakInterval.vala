@@ -1,6 +1,5 @@
 public class Pomodoro.Timer.BreakInterval : Interval {
-
-    public static int break_duration_min { get; set; default = 5;}
+    public static int break_duration_min = 5;
 
     public BreakInterval () {
         base (break_duration_min);
@@ -19,5 +18,4 @@ public class Pomodoro.Timer.BreakInterval : Interval {
     public override string color () {
         return "#c6262e";
     }
-
 }

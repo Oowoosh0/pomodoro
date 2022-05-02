@@ -12,6 +12,21 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
             transition: all 250ms ease-in-out;
         }
     """;
+    public bool autostart_interval { get; set; default = false;}
+    public int work_duration_min {
+        get { return Timer.WorkInterval.work_duration_min; }
+        set { 
+            Timer.WorkInterval.work_duration_min = value;
+            on_time_change ();
+        }
+    }
+    public int break_duration_min {
+        get { return Timer.BreakInterval.break_duration_min; }
+        set { 
+            Timer.BreakInterval.break_duration_min = value;
+            on_time_change ();
+        }
+    }
 
     public MainWindow (Gtk.Application application) {
         Object (
@@ -26,28 +41,26 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
     construct {
         Hdy.init ();
 
-        pomodoro_interval = new Timer.WorkInterval ();
-        /*
         Application.settings.bind (
             "work-time-minutes",
-            pomodoro,
-            "work_duration_minutes",
+            this,
+            "work_duration_min",
             GLib.SettingsBindFlags.GET
         );
         Application.settings.bind (
             "break-time-minutes",
-            pomodoro,
-            "break_duration_minutes",
+            this,
+            "break_duration_min",
             GLib.SettingsBindFlags.GET
         );
         Application.settings.bind (
             "autostart-interval",
-            pomodoro,
+            this,
             "autostart_interval",
             GLib.SettingsBindFlags.GET
         );
-        */
 
+        pomodoro_interval = new Timer.WorkInterval ();
         pomodoro_interval.finished.connect_after (on_pomodoro_finished);
 
         var header_bar = new Hdy.HeaderBar () {
@@ -168,7 +181,7 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         }
         timer_label.set_label_seconds (pomodoro_interval.get_remaining_time ());
 
-        if (Application.settings.get_boolean ("autostart-interval")) {
+        if (autostart_interval) {
             on_start ();
         } else {
             start_pause_button.set_start_image ();
@@ -180,7 +193,10 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
     }
 
     private void on_time_change () {
-        timer_label.set_label_seconds (pomodoro_interval.get_remaining_time ());
+        if (pomodoro_interval.is_before_start ()) {
+            pomodoro_interval = pomodoro_interval.reset ();
+            timer_label.set_label_seconds (pomodoro_interval.get_remaining_time ());
+        }
     }
 
     private void show_preferences_dialog () {

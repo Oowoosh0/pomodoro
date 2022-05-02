@@ -1,6 +1,5 @@
 public class Pomodoro.Timer.WorkInterval : Interval {
-
-    public static int work_duration_min { get; set; default = 25;}
+    public static int work_duration_min = 25;
 
     public WorkInterval () {
         base (work_duration_min);
