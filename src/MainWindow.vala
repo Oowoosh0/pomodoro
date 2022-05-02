@@ -53,37 +53,6 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
     construct {
         Hdy.init ();
 
-        Application.settings.bind (
-            "work-time-minutes",
-            this,
-            "work_duration_min",
-            GLib.SettingsBindFlags.GET
-        );
-        Application.settings.bind (
-            "break-time-minutes",
-            this,
-            "break_duration_min",
-            GLib.SettingsBindFlags.GET
-        );
-        Application.settings.bind (
-            "long-break-time-minutes",
-            this,
-            "long_break_duration_min",
-            GLib.SettingsBindFlags.GET
-        );
-        Application.settings.bind (
-            "autostart-interval",
-            this,
-            "autostart_interval",
-            GLib.SettingsBindFlags.GET
-        );
-        Application.settings.bind (
-            "intervals-to-long-break",
-            this,
-            "intervals_to_long_break",
-            GLib.SettingsBindFlags.GET
-        );
-
         pomodoro_interval = new Timer.WorkInterval (1);
         pomodoro_interval.finished.connect_after (on_pomodoro_finished);
 
@@ -152,6 +121,37 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         add (window_handle);
         set_default (start_pause_button);
         set_focus (start_pause_button);
+
+        Application.settings.bind (
+            "work-time-minutes",
+            this,
+            "work_duration_min",
+            GLib.SettingsBindFlags.GET
+        );
+        Application.settings.bind (
+            "break-time-minutes",
+            this,
+            "break_duration_min",
+            GLib.SettingsBindFlags.GET
+        );
+        Application.settings.bind (
+            "long-break-time-minutes",
+            this,
+            "long_break_duration_min",
+            GLib.SettingsBindFlags.GET
+        );
+        Application.settings.bind (
+            "autostart-interval",
+            this,
+            "autostart_interval",
+            GLib.SettingsBindFlags.GET
+        );
+        Application.settings.bind (
+            "intervals-to-long-break",
+            this,
+            "intervals_to_long_break",
+            GLib.SettingsBindFlags.GET
+        );
     }
 
     public void on_start_pause_toggle () {
