@@ -10,6 +10,7 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
             transition: all 250ms ease-in-out;
         }
     """;
+
     public bool autostart_interval { get; set; default = false;}
     public int work_duration_min {
         get { return Timer.WorkInterval.work_duration_min; }
@@ -52,9 +53,9 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
 
     construct {
         Hdy.init ();
-
+        
+        Timer.Interval.parent_window = this;
         pomodoro_interval = new Timer.WorkInterval (1);
-        pomodoro_interval.finished.connect_after (on_pomodoro_finished);
 
         var header_bar = new Hdy.HeaderBar () {
             decoration_layout = "close:",
@@ -177,7 +178,7 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         pomodoro_interval.pause();
     }
 
-    private void on_pomodoro_finished () {
+    public void on_finished () {
         NotificationManager.interval_finished ();
 
         // dirty fix because present() doesn't work

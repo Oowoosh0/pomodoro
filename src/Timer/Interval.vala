@@ -1,5 +1,6 @@
 public abstract class Pomodoro.Timer.Interval : Object {
     private TimeoutSource? timer = null;
+    public static Pomodoro.MainWindow parent_window;
 
     public int index;
     public int duration_sec { get; private set; }
@@ -34,8 +35,9 @@ public abstract class Pomodoro.Timer.Interval : Object {
         state = IntervalState.PAUSED;
     }
 
-    public virtual signal void finished () {
+    private void finished () {
         state = IntervalState.FINISHED;
+        parent_window.on_finished ();
     }
 
     public bool is_running () {
