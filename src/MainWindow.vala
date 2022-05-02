@@ -124,8 +124,8 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         window_handle.add (main_grid);
 
         add (window_handle);
-        //set_default (start_pause_button);
-        //set_focus (start_pause_button);
+        set_default (start_pause_button);
+        set_focus (start_pause_button);
     }
 
     public void on_start_pause_toggle () {
