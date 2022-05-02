@@ -19,8 +19,12 @@ public class Pomodoro.Widgets.PreferencesDialog : Granite.Dialog {
         intervals_grid.attach (new SettingsDurationButton ("work-time-minutes", 5.0), 1, 0);
         intervals_grid.attach (new SettingsLabel (_("Break duration:")), 0, 1);
         intervals_grid.attach (new SettingsDurationButton ("break-time-minutes", 1.0), 1, 1);
-        intervals_grid.attach (new SettingsLabel (_("Autostart intervals:")), 0, 2);
-        intervals_grid.attach (new SettingsSwitch ("autostart-interval"), 1, 2);
+        intervals_grid.attach (new SettingsLabel (_("Long break duration:")), 0, 2);
+        intervals_grid.attach (new SettingsDurationButton ("long-break-time-minutes", 1.0), 1, 2);
+        intervals_grid.attach (new SettingsLabel (_("Intervals to long break:")), 0, 3);
+        intervals_grid.attach (new SettingsDurationButton ("intervals-to-long-break", 1.0), 1, 3);
+        intervals_grid.attach (new SettingsLabel (_("Autostart intervals:")), 0, 4);
+        intervals_grid.attach (new SettingsSwitch ("autostart-interval"), 1, 4);
 
         var notifications_grid = new Gtk.Grid ();
         notifications_grid.column_spacing = 12;
