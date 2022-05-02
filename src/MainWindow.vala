@@ -3,8 +3,6 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
     private Widgets.TimerLabel timer_label;
     private StartPauseButton start_pause_button;
     private Widgets.PreferencesDialog? preferences_dialog = null;
-    private const string WORK_BG_COLOR = "#007367";
-    private const string BREAK_BG_COLOR = "#c6262e";
     private const string BG_CSS = """
         @define-color colorBackground %s;
 

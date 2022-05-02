@@ -16,7 +16,7 @@ public class Pomodoro.Timer.WorkInterval : Interval {
     }
 
     public override string color () {
-        return "#007367";
+        return "#0d52bf";
     }
 
 }
