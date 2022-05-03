@@ -179,7 +179,7 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
     }
 
     public void on_finished () {
-        NotificationManager.interval_finished ();
+        NotificationManager.interval_finished (pomodoro_interval.message ());
 
         // dirty fix because present() doesn't work
         if (Application.settings.get_boolean ("raise-window")) {

@@ -73,6 +73,8 @@ public abstract class Pomodoro.Timer.Interval : Object {
     public abstract Interval next ();
 
     public abstract string color ();
+    
+    public abstract string message ();
 
     protected void destroy_timer () {
         duration_sec = get_remaining_time ();

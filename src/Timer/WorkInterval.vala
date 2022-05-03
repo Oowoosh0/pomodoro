@@ -24,4 +24,11 @@ public class Pomodoro.Timer.WorkInterval : Interval {
         return "#0d52bf";
     }
 
+    public override string message () {
+        int next_break_duration = BreakInterval.break_duration_min;
+        if (index % intervals_to_long_break == 0) {
+            next_break_duration = LongBreakInterval.break_duration_min;
+        }
+        return "Time to treat yourself with a break. See you in %i minutes.".printf (next_break_duration);
+    }
 }
