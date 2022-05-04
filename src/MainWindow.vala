@@ -14,28 +14,28 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
     public bool autostart_interval { get; set; default = false;}
     public int work_duration_min {
         get { return Timer.WorkInterval.work_duration_min; }
-        set { 
+        set {
             Timer.WorkInterval.work_duration_min = value;
             on_time_change ();
         }
     }
     public int break_duration_min {
         get { return Timer.BreakInterval.break_duration_min; }
-        set { 
+        set {
             Timer.BreakInterval.break_duration_min = value;
             on_time_change ();
         }
     }
     public int long_break_duration_min {
         get { return Timer.LongBreakInterval.break_duration_min; }
-        set { 
+        set {
             Timer.LongBreakInterval.break_duration_min = value;
             on_time_change ();
         }
     }
     public int intervals_to_long_break {
         get { return Timer.WorkInterval.intervals_to_long_break; }
-        set { 
+        set {
             Timer.WorkInterval.intervals_to_long_break = value;
             on_time_change ();
         }
@@ -53,7 +53,7 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
 
     construct {
         Hdy.init ();
-        
+
         Timer.Interval.parent_window = this;
         pomodoro_interval = new Timer.WorkInterval (1);
 
@@ -165,7 +165,7 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
 
     private void on_start () {
         start_pause_button.set_pause_image ();
-        pomodoro_interval.start();
+        pomodoro_interval.start ();
 
         Timeout.add (200, () => {
             timer_label.set_label_seconds (pomodoro_interval.get_remaining_time ());
@@ -175,7 +175,7 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
 
     private void on_pause () {
         start_pause_button.set_start_image ();
-        pomodoro_interval.pause();
+        pomodoro_interval.pause ();
     }
 
     public void on_finished () {

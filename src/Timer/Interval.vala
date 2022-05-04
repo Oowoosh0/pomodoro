@@ -43,7 +43,7 @@ public abstract class Pomodoro.Timer.Interval : Object {
     public bool is_running () {
         return state == IntervalState.RUNNING;
     }
-    
+
     public bool is_before_start () {
         return state == IntervalState.BEFORE_START;
     }
@@ -73,7 +73,7 @@ public abstract class Pomodoro.Timer.Interval : Object {
     public abstract Interval next ();
 
     public abstract string color ();
-    
+
     public abstract string message ();
 
     protected void destroy_timer () {

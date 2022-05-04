@@ -18,7 +18,7 @@ public class Pomodoro.Timer.BreakInterval : Interval {
     public override string color () {
         return "#cc3b02";
     }
-    
+
     public override string message () {
         return "Sadly your short break is over. Time to get back to work.";
     }
