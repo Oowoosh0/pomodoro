@@ -1,3 +1,6 @@
 src/Widgets/PreferencesDialog.vala
+src/Timer/WorkInterval.vala
+src/Timer/BreakInterval.vala
+src/Timer/LongBreakInterval.vala
 data/pomodoro.desktop.in
 data/pomodoro.appdata.xml.in

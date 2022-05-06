@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.oowoosh0.pomodoro\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-24 15:07+0100\n"
+"POT-Creation-Date: 2022-05-06 23:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,27 +30,48 @@ msgid "Break duration:"
 msgstr ""
 
 #: src/Widgets/PreferencesDialog.vala:22
+msgid "Long break duration:"
+msgstr ""
+
+#: src/Widgets/PreferencesDialog.vala:24
+msgid "Intervals to long break:"
+msgstr ""
+
+#: src/Widgets/PreferencesDialog.vala:26
 msgid "Autostart intervals:"
 msgstr ""
 
-#: src/Widgets/PreferencesDialog.vala:28
+#: src/Widgets/PreferencesDialog.vala:32
 msgid "Show notification:"
 msgstr ""
 
-#: src/Widgets/PreferencesDialog.vala:30
+#: src/Widgets/PreferencesDialog.vala:34
 msgid "Raise Window to top:"
 msgstr ""
 
-#: src/Widgets/PreferencesDialog.vala:37
+#: src/Widgets/PreferencesDialog.vala:41
 msgid "Intervals"
 msgstr ""
 
-#: src/Widgets/PreferencesDialog.vala:38
+#: src/Widgets/PreferencesDialog.vala:42
 msgid "Notifications"
 msgstr ""
 
-#: src/Widgets/PreferencesDialog.vala:48
+#: src/Widgets/PreferencesDialog.vala:52
 msgid "Close"
+msgstr ""
+
+#: src/Timer/WorkInterval.vala:32
+#, c-format
+msgid "Time to treat yourself with a break. See you in %i minutes."
+msgstr ""
+
+#: src/Timer/BreakInterval.vala:23
+msgid "Sadly your short break is over. Time to get back to work."
+msgstr ""
+
+#: src/Timer/LongBreakInterval.vala:23
+msgid "Sadly your long break finished. Time to get back to work"
 msgstr ""
 
 #: data/pomodoro.desktop.in:3 data/pomodoro.appdata.xml.in:7
@@ -66,7 +87,7 @@ msgid "Timer for pomodoro technique"
 msgstr ""
 
 #: data/pomodoro.desktop.in:8
-msgid "application-default-icon"
+msgid "com.github.oowoosh0.pomodoro"
 msgstr ""
 
 #: data/pomodoro.desktop.in:11

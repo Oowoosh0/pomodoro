@@ -20,6 +20,6 @@ public class Pomodoro.Timer.LongBreakInterval : Interval {
     }
 
     public override string message () {
-        return "Sadly your long break finished. Time to get back to work";
+        return _("Sadly your long break finished. Time to get back to work");
     }
 }

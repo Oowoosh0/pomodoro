@@ -20,6 +20,6 @@ public class Pomodoro.Timer.BreakInterval : Interval {
     }
 
     public override string message () {
-        return "Sadly your short break is over. Time to get back to work.";
+        return _("Sadly your short break is over. Time to get back to work.");
     }
 }
