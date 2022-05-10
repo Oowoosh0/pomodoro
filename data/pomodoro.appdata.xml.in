@@ -9,11 +9,11 @@
   <update_contact>mail@oowoo.sh</update_contact>
   <url type="homepage">https://github.com/oowoosh0/pomodoro</url>
   <url type="bugtracker">https://github.com/oowoosh0/pomodoro/issues</url>
-  <summary>A simple Pomodoro time management app</summary>
+  <summary>A simple timer for the pomodoro time management technique.</summary>
   <description>
     <p>
       The Pomodoro Technique is a very simple method to ensure you are taking
-      enough breaks while working. This simple App helps you to keep track off
+      enough breaks while working. This simple app helps you to keep track off
       when it is time for a break and when it is time to start working again.
     </p>
   </description>
