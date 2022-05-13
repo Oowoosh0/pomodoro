@@ -17,6 +17,13 @@
       when it is time for a break and when it is time to start working again.
     </p>
   </description>
+  <releases>
+    <release version="1.0.1" date="2022-05-13">
+      <description>
+        <p>First stable release!</p>
+      </description>
+    </release>
+  </releases>
   <screenshots>
     <screenshot type="default">
       <image>https://raw.githubusercontent.com/Oowoosh0/pomodoro/main/data/media/screenshot-1.png</image>
@@ -29,7 +36,7 @@
     </screenshot>
   </screenshots>
   <custom>
-    <value key="x-appcenter-color-primary">#007367</value>
+    <value key="x-appcenter-color-primary">#0d52bf</value>
     <value key="x-appcenter-color-primary-text">#ffffff</value>
     <value key="x-appcenter-suggested-price">0</value>
   </custom>
