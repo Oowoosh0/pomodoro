@@ -1,3 +1,5 @@
+[![Get it on AppCenter](https://appcenter.elementary.io/badge.svg)](https://appcenter.elementary.io/com.github.oowoosh0.pomodoro/)
+
 # pomodoro
 Simple timer for pomodoro style time management.
 
