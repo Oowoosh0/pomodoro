@@ -4,6 +4,7 @@ on: [push, pull_request]
 
 jobs:
   flatpak:
+    name: Flatpak
     runs-on: ubuntu-latest
 
     container:
@@ -21,3 +22,17 @@ jobs:
         repository-name: appcenter
         repository-url: https://flatpak.elementary.io/repo.flatpakrepo
         cache-key: "flatpak-builder-${{ github.sha }}"
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    container:
+      image: valalang/lint
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Lint
+        run: io.elementary.vala-lint -d .
