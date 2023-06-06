@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.oowoosh0.pomodoro\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-06 23:45+0200\n"
+"POT-Creation-Date: 2023-06-06 19:12+0200\n"
 "PO-Revision-Date: 2022-07-08 17:03+0100\n"
 "Last-Translator: Albano Battistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -85,10 +85,6 @@ msgstr ""
 msgid "Timer for pomodoro technique"
 msgstr "Timer per la tecnica pomodoro"
 
-#: data/pomodoro.desktop.in:8
-msgid "com.github.oowoosh0.pomodoro"
-msgstr ""
-
 #: data/pomodoro.desktop.in:11
 msgid "Timer;"
 msgstr ""
@@ -98,15 +94,22 @@ msgid "Moriz Mertens (@oowoosh0)"
 msgstr ""
 
 #: data/pomodoro.appdata.xml.in:12
-msgid "A simple Pomodoro time management app"
+#, fuzzy
+msgid "A simple timer for the pomodoro time management technique."
 msgstr "Una semplice app di gestione del tempo Pomodoro"
 
 #: data/pomodoro.appdata.xml.in:14
+#, fuzzy
 msgid ""
 "The Pomodoro Technique is a very simple method to ensure you are taking "
-"enough breaks while working. This simple App helps you to keep track off "
+"enough breaks while working. This simple app helps you to keep track off "
 "when it is time for a break and when it is time to start working again."
 msgstr ""
 "La Tecnica Pomodoro è un metodo molto semplice per assicurarti di prendere "
-"abbastanza pause durante il lavoro. Questa semplice App ti aiuta a tenere traccia "
-"quando è il momento di fare una pausa e quando è il momento di ricominciare a lavorare."
+"abbastanza pause durante il lavoro. Questa semplice App ti aiuta a tenere "
+"traccia quando è il momento di fare una pausa e quando è il momento di "
+"ricominciare a lavorare."
+
+#: data/pomodoro.appdata.xml.in:23
+msgid "First stable release!"
+msgstr ""
