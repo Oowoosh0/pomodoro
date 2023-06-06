@@ -1,4 +1,4 @@
-public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
+public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
     private Timer.Interval pomodoro_interval;
     private Widgets.TimerLabel timer_label;
     private StartPauseButton start_pause_button;
@@ -52,24 +52,23 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
     }
 
     construct {
-        Hdy.init ();
+        //Hdy.init ();
 
         Timer.Interval.parent_window = this;
         pomodoro_interval = new Timer.WorkInterval (1);
 
-        var header_bar = new Hdy.HeaderBar () {
+        var header_bar = new Gtk.HeaderBar () {
             decoration_layout = "close:",
-            show_close_button = true
+            // show_close_button = true
         };
 
         var header_bar_context = header_bar.get_style_context ();
         header_bar_context.add_class ("main-titlebar");
         header_bar_context.add_class ("bg-color");
-        header_bar_context.add_class (Gtk.STYLE_CLASS_FLAT);
+        // header_bar_context.add_class (Gtk.STYLE_CLASS_FLAT);
 
         var menu_button = new Gtk.Button.from_icon_name (
-            "open-menu-symbolic",
-            Gtk.IconSize.SMALL_TOOLBAR
+            "open-menu-symbolic"
         );
         menu_button.get_style_context ().add_class ("button");
         menu_button.clicked.connect (() => {
@@ -86,17 +85,16 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         start_pause_button.clicked.connect (() => on_start_pause_toggle ());
 
         var skip_forward_button = new Gtk.Button.from_icon_name (
-            "media-skip-forward-symbolic",
-            Gtk.IconSize.DND
+            "media-skip-forward-symbolic"
         );
-        skip_forward_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        // skip_forward_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
         skip_forward_button.get_style_context ().add_class ("button");
         skip_forward_button.clicked.connect (() => on_skip_forward ());
 
         var timer_controls = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         timer_controls.halign = Gtk.Align.CENTER;
-        timer_controls.pack_start (start_pause_button, false, false, 0);
-        timer_controls.pack_start (skip_forward_button, false, false, 0);
+        timer_controls.append (start_pause_button);
+        timer_controls.append (skip_forward_button);
 
         var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0) {
             hexpand = true,
@@ -106,8 +104,8 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         var box_context = box.get_style_context ();
         box_context.add_class ("timer-box");
         box_context.add_class ("bg-color");
-        box.pack_start (timer_label, true, true, 0);
-        box.pack_start (timer_controls, true, false, 0);
+        box.append (timer_label);
+        box.append (timer_controls);
 
         var main_grid = new Gtk.Grid () {
             hexpand = true
@@ -116,11 +114,11 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         main_grid.attach (header_bar, 0, 0);
         main_grid.attach (box, 0, 1);
 
-        var window_handle = new Hdy.WindowHandle ();
-        window_handle.add (main_grid);
+        var window_handle = new Gtk.WindowHandle ();
+        window_handle.set_child (main_grid);
 
-        add (window_handle);
-        set_default (start_pause_button);
+        set_child (window_handle);
+        //set_default (start_pause_button);
         set_focus (start_pause_button);
 
         Application.settings.bind (
@@ -180,12 +178,15 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
 
     public void on_finished () {
         NotificationManager.interval_finished (pomodoro_interval.message ());
-
+        /* TODO adapt to gtk4
+        
         // dirty fix because present() doesn't work
         if (Application.settings.get_boolean ("raise-window")) {
             this.set_keep_above (true);
             this.set_keep_above (false);
         }
+        
+        */
 
         on_interval_switch ();
     }
@@ -195,12 +196,14 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
         var css_provider = new Gtk.CssProvider ();
         var break_css = BG_CSS.printf (pomodoro_interval.color ());
         try {
+        /* TODO adapt to gtk4
             css_provider.load_from_data (break_css, break_css.length);
             Gtk.StyleContext.add_provider_for_screen (
                 Gdk.Screen.get_default (),
                 css_provider,
                 Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
             );
+        */
         } catch (GLib.Error e) {
             return;
         }
@@ -227,10 +230,11 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
     private void show_preferences_dialog () {
         if (preferences_dialog == null) {
             preferences_dialog = new Widgets.PreferencesDialog (this);
-            preferences_dialog.show_all ();
+            // preferences_dialog.show_all ();
 
-            preferences_dialog.destroy.connect (() => {
+            preferences_dialog.close_request.connect (() => {
                 preferences_dialog = null;
+                return true;
             });
         }
 
@@ -239,27 +243,18 @@ public class Pomodoro.MainWindow : Hdy.ApplicationWindow {
 
     private class StartPauseButton : Gtk.Button {
         public StartPauseButton () {
-            image = new Gtk.Image.from_icon_name (
-                "media-playback-start-symbolic",
-                Gtk.IconSize.DIALOG
-            );
-            get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+            set_icon_name ("media-playback-start-symbolic");
+            // get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
             get_style_context ().add_class ("button");
-            set_can_default (true);
+            // set_can_default (true);
         }
 
         public void set_start_image () {
-            image = new Gtk.Image.from_icon_name (
-                "media-playback-start-symbolic",
-                Gtk.IconSize.DIALOG
-            );
+            set_icon_name ("media-playback-start-symbolic");
         }
 
         public void set_pause_image () {
-            image = new Gtk.Image.from_icon_name (
-                "media-playback-pause-symbolic",
-                Gtk.IconSize.DIALOG
-            );
+            set_icon_name ("media-playback-pause-symbolic");
         }
     }
 }

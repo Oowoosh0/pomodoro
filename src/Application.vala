@@ -16,6 +16,7 @@ public class Pomodoro.Application : Gtk.Application {
             gtk_settings.gtk_application_prefer_dark_theme = granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK;
         });
 
+        /* TODO adapt to gtk4
         var provider = new Gtk.CssProvider ();
         provider.load_from_resource ("com/github/oowoosh0/pomodoro/Application.css");
         Gtk.StyleContext.add_provider_for_screen (
@@ -23,10 +24,10 @@ public class Pomodoro.Application : Gtk.Application {
             provider,
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         );
+        */
 
         if (get_windows () == null) {
             main_window = new MainWindow (this);
-            main_window.show_all ();
         } else {
             main_window.present ();
         }

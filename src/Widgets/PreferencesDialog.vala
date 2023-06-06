@@ -3,7 +3,7 @@ public class Pomodoro.Widgets.PreferencesDialog : Granite.Dialog {
 
     public PreferencesDialog (Gtk.Window? parent) {
         Object (
-            border_width: 5,
+            // border_width: 5,
             deletable: false,
             resizable: false,
             title: _("Preferences"),
@@ -35,7 +35,7 @@ public class Pomodoro.Widgets.PreferencesDialog : Granite.Dialog {
         notifications_grid.attach (new SettingsSwitch ("raise-window"), 1, 1);
 
         stack = new Gtk.Stack ();
-        stack.margin = 6;
+        // stack.margin = 6;
         stack.margin_top = 18;
         stack.margin_bottom = 18;
         stack.add_titled (intervals_grid, "intervals", _("Intervals"));
@@ -51,10 +51,10 @@ public class Pomodoro.Widgets.PreferencesDialog : Granite.Dialog {
 
         var close_button = new Gtk.Button.with_label (_("Close"));
         close_button.clicked.connect (() => {
-            destroy ();
+            close ();
         });
 
-        get_content_area ().add (main_grid);
+        get_content_area ().append (main_grid);
         add_action_widget (close_button, 0);
     }
 
