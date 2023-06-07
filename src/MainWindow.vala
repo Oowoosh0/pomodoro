@@ -59,13 +59,13 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
 
         var header_bar = new Gtk.HeaderBar () {
             decoration_layout = "close:",
-            // show_close_button = true
+            // TODO show_close_button = true
         };
 
         var header_bar_context = header_bar.get_style_context ();
         header_bar_context.add_class ("main-titlebar");
         header_bar_context.add_class ("bg-color");
-        // header_bar_context.add_class (Gtk.STYLE_CLASS_FLAT);
+        // TODO header_bar_context.add_class (Gtk.STYLE_CLASS_FLAT);
 
         var menu_button = new Gtk.Button.from_icon_name (
             "open-menu-symbolic"
@@ -79,7 +79,7 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
 
         timer_label = new Widgets.TimerLabel ();
         timer_label.set_label_seconds (pomodoro_interval.get_remaining_time ());
-        timer_label.yalign = 1;
+        // TODO timer_label.yalign = 1;
 
         start_pause_button = new StartPauseButton ();
         start_pause_button.clicked.connect (() => on_start_pause_toggle ());
