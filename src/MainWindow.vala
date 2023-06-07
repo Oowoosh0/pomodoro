@@ -59,13 +59,19 @@ public class Pomodoro.MainWindow : Gtk.ApplicationWindow {
 
         var header_bar = new Gtk.HeaderBar () {
             decoration_layout = "close:",
-            // TODO show_close_button = true
+            title_widget = new Gtk.Label ("")
         };
 
         var header_bar_context = header_bar.get_style_context ();
-        header_bar_context.add_class ("main-titlebar");
-        header_bar_context.add_class ("bg-color");
-        // TODO header_bar_context.add_class (Gtk.STYLE_CLASS_FLAT);
+        header_bar.add_css_class ("main-titlebar");
+        header_bar.add_css_class ("bg-color");
+        header_bar.add_css_class (Granite.STYLE_CLASS_FLAT);
+
+        // hide default titlebar
+        var null_title = new Gtk.Grid () {
+            visible = false
+        };
+        set_titlebar (null_title);
 
         var menu_button = new Gtk.Button.from_icon_name (
             "open-menu-symbolic"
