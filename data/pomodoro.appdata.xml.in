@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2021 Moriz Mertens <mail@oowoo.sh> -->
-<component type="desktop">
+<!-- Copyright 2021-2023 Moriz Mertens <mail@oowoo.sh> -->
+<component type="desktop-application">
   <id>com.github.oowoosh0.pomodoro</id>
   <metadata_license>CC0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
+
   <name>Pomodoro</name>
   <developer_name>Moriz Mertens (@oowoosh0)</developer_name>
   <update_contact>mail@oowoo.sh</update_contact>
@@ -17,13 +18,25 @@
       when it is time for a break and when it is time to start working again.
     </p>
   </description>
+
   <releases>
+    <release version="1.1.0" date="2023-06-07">
+      <description>
+        <p>New translations:</p>
+        <ul>
+          <li>🇮🇹 Italian</li>
+          <li>🇫🇷 French</li>
+        </ul>
+      </description>
+    </release>
+
     <release version="1.0.1" date="2022-05-13">
       <description>
         <p>First stable release!</p>
       </description>
     </release>
   </releases>
+
   <screenshots>
     <screenshot type="default">
       <image>https://raw.githubusercontent.com/Oowoosh0/pomodoro/main/data/media/screenshot-1.png</image>
@@ -35,6 +48,7 @@
       <image>https://raw.githubusercontent.com/Oowoosh0/pomodoro/main/data/media/screenshot-preferences.png</image>
     </screenshot>
   </screenshots>
+
   <custom>
     <value key="x-appcenter-color-primary">#0d52bf</value>
     <value key="x-appcenter-color-primary-text">#ffffff</value>
