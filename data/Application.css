@@ -1,11 +1,13 @@
 @define-color colorBackground #0d52bf;
 
+/*
 .main-titlebar {
     box-shadow:
         inset 1px 0 0 0 shade (@colorBackground, 1.07),
         inset -1px 0 0 0 shade (@colorBackground, 1.07),
         inset 0 1px 0 0 shade (@colorBackground, 1.2);
 }
+*/
 
 .timer-label {
     font-family: "Inter";
@@ -14,12 +16,14 @@
     color: white;
 }
 
+/*
 .timer-box {
     box-shadow:
         inset 1px 0 0 0 shade (@colorBackground, 1.07),
         inset -1px 0 0 0 shade (@colorBackground, 1.07),
         inset 0 -1px 0 0 shade (@colorBackground, 1.1);
 }
+*/
 
 .bg-color {
     background-color: @colorBackground;

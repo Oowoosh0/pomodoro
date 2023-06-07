@@ -57,57 +57,30 @@ public class Pomodoro.Widgets.PreferencesDialog : Granite.Dialog {
         get_content_area ().append (main_grid);
         add_action_widget (close_button, 0);
     }
-    
+
     private Gtk.Label create_label (string text) {
         var label = new Gtk.Label (text) {
             halign = Gtk.Align.END
         };
-        
+
         return label;
     }
-    
+
     private Gtk.Switch create_switch (string setting) {
         var toggle = new Gtk.Switch () {
             halign = Gtk.Align.START,
             valign = Gtk.Align.CENTER
         };
         Application.settings.bind (setting, toggle, "active", GLib.SettingsBindFlags.DEFAULT);
-        
+
         return toggle;
     }
-    
+
     private Gtk.SpinButton create_spin_button (string setting, double step_inc) {
         Gtk.Adjustment adjust = new Gtk.Adjustment (10.0, 0.0, 500.0, step_inc, 0.0, 0.0);
         var spin_button = new Gtk.SpinButton (adjust, 1.0, 0);
         Application.settings.bind (setting, spin_button, "value", GLib.SettingsBindFlags.DEFAULT);
-        
+
         return spin_button;
     }
-    
-    /*
-    private class SettingsLabel : Gtk.Label {
-        public SettingsLabel (string text) {
-            label = text;
-            halign = Gtk.Align.END;
-        }
-    }
-
-    private class SettingsSwitch : Gtk.Switch {
-        public SettingsSwitch (string setting) {
-            halign = Gtk.Align.START;
-            valign = Gtk.Align.CENTER;
-            Application.settings.bind (setting, this, "active", GLib.SettingsBindFlags.DEFAULT);
-        }
-    }
-
-    private class SettingsDurationButton : Gtk.SpinButton {
-        public SettingsDurationButton (string setting, double step_inc) {
-            Gtk.Adjustment adjust = new Gtk.Adjustment (10.0, 0.0, 500.0, step_inc, 0.0, 0.0);
-            adjustment = adjust;
-            climb_rate = 1.0;
-            digits = 0;
-            Application.settings.bind (setting, this, "value", GLib.SettingsBindFlags.DEFAULT);
-        }
-    }
-    */
 }
