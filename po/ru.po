@@ -1,115 +1,108 @@
-# German translations for com.github.oowoosh0.pomodoro package.
-# Copyright (C) 2021 THE com.github.oowoosh0.pomodoro'S COPYRIGHT HOLDER
+# Russian translation for com.github.oowoosh0.pomodoro.
+# Copyright (C) 2023 THE com.github.oowoosh0.pomodoro'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the com.github.oowoosh0.pomodoro package.
-# Automatically generated, 2021.
+# lenemter <lenemter@gmail.com>, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.oowoosh0.pomodoro\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-10 01:04+0900\n"
-"PO-Revision-Date: 2021-01-23 16:36+0100\n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-06-10 01:04+0900\n"
+"Last-Translator: lenemter <lenemter@gmail.com>\n"
 "Language-Team: none\n"
-"Language: de\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/Widgets/PreferencesDialog.vala:9
 msgid "Preferences"
-msgstr "Einstellungen"
+msgstr "Параметры"
 
 #: src/Widgets/PreferencesDialog.vala:18
 msgid "Work duration:"
-msgstr "Arbeitsdauer:"
+msgstr "Длительность работы:"
 
 #: src/Widgets/PreferencesDialog.vala:20
 msgid "Break duration:"
-msgstr "Pausendauer:"
+msgstr "Длительность перерыва:"
 
 #: src/Widgets/PreferencesDialog.vala:22
 msgid "Long break duration:"
-msgstr "Dauer der langen Pausen:"
+msgstr "Длительность длинного перерыва:"
 
 #: src/Widgets/PreferencesDialog.vala:24
 msgid "Intervals to long break:"
-msgstr "Arbeitseinheiten vor langer Pause:"
+msgstr "Интервалов до длинного перерыва:"
 
 #: src/Widgets/PreferencesDialog.vala:26
 msgid "Autostart intervals:"
-msgstr "Intervale automatisch starten:"
+msgstr "Автозапуск интервалов:"
 
 #: src/Widgets/PreferencesDialog.vala:32
 msgid "Show notification:"
-msgstr "Benachrichtigungen anzeigen:"
+msgstr "Показывать уведомления:"
 
 #: src/Widgets/PreferencesDialog.vala:34
 msgid "Raise Window to top:"
-msgstr "Fenster hervorheben:"
+msgstr "Фокусировать окно:"
 
 #: src/Widgets/PreferencesDialog.vala:41
 msgid "Intervals"
-msgstr "Intervale"
+msgstr "Интервалы"
 
 #: src/Widgets/PreferencesDialog.vala:42
 msgid "Notifications"
-msgstr "Benachrichtigungen"
+msgstr "Уведомления"
 
 #: src/Widgets/PreferencesDialog.vala:52
 msgid "Close"
-msgstr "Schließen"
+msgstr "Закрыть"
 
 #: src/Timer/WorkInterval.vala:32
 #, c-format
 msgid "Time to treat yourself with a break. See you in %i minutes."
-msgstr "Zeit für eine Pause. Bis in %i Minuten."
+msgstr ""
 
 #: src/Timer/BreakInterval.vala:23
 msgid "Sadly your short break is over. Time to get back to work."
-msgstr "Leider ist deine Pause vorbei."
+msgstr ""
 
 #: src/Timer/LongBreakInterval.vala:23
 msgid "Sadly your long break finished. Time to get back to work"
-msgstr "Leider ist deine lange Pause vorbei."
+msgstr ""
 
 #: data/pomodoro.desktop.in:3 data/pomodoro.appdata.xml.in:8
 msgid "Pomodoro"
-msgstr "Pomodoro"
+msgstr ""
 
 #: data/pomodoro.desktop.in:4
 msgid "Pomodoro Timer"
-msgstr "Pomdoro Timer"
+msgstr ""
 
 #: data/pomodoro.desktop.in:5
 msgid "Timer for pomodoro technique"
-msgstr "Timer für die Pomodoro Technik"
+msgstr ""
 
 #: data/pomodoro.desktop.in:11
 msgid "Timer;"
-msgstr "Timer;"
+msgstr ""
 
 #: data/pomodoro.appdata.xml.in:9
 msgid "Moriz Mertens (@oowoosh0)"
-msgstr "Moriz Mertens (@oowoosh0)"
+msgstr ""
 
 #: data/pomodoro.appdata.xml.in:13
-#, fuzzy
 msgid "A simple timer for the pomodoro time management technique."
-msgstr "Eine App für Zeitmanagements nach der Pomodoro-Technik"
+msgstr ""
 
 #: data/pomodoro.appdata.xml.in:15
-#, fuzzy
 msgid ""
 "The Pomodoro Technique is a very simple method to ensure you are taking "
 "enough breaks while working. This simple app helps you to keep track off "
 "when it is time for a break and when it is time to start working again."
 msgstr ""
-"Die Pomodoro-Technik hilft dir sicherzustellen, dass du genug Pausen machst "
-"während dem Arbeiten. Diese App hilft dir den Überblick darüber zu behalten, "
-"wann es Zeit ist für eine Pause und wann es Zeit ist sich wieder an die "
-"Arbeit zu machen."
 
 #: data/pomodoro.appdata.xml.in:25
 msgid "New translations:"
@@ -126,6 +119,3 @@ msgstr ""
 #: data/pomodoro.appdata.xml.in:35
 msgid "First stable release!"
 msgstr ""
-
-#~ msgid "com.github.oowoosh0.pomodoro"
-#~ msgstr "com.github.oowoosh0.pomodoro"

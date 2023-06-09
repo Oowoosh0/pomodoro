@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.oowoosh0.pomodoro\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-06 19:12+0200\n"
+"POT-Creation-Date: 2023-06-10 01:04+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/Widgets/PreferencesDialog.vala:9
@@ -74,7 +74,7 @@ msgstr ""
 msgid "Sadly your long break finished. Time to get back to work"
 msgstr ""
 
-#: data/pomodoro.desktop.in:3 data/pomodoro.appdata.xml.in:7
+#: data/pomodoro.desktop.in:3 data/pomodoro.appdata.xml.in:8
 msgid "Pomodoro"
 msgstr ""
 
@@ -90,21 +90,33 @@ msgstr ""
 msgid "Timer;"
 msgstr ""
 
-#: data/pomodoro.appdata.xml.in:8
+#: data/pomodoro.appdata.xml.in:9
 msgid "Moriz Mertens (@oowoosh0)"
 msgstr ""
 
-#: data/pomodoro.appdata.xml.in:12
+#: data/pomodoro.appdata.xml.in:13
 msgid "A simple timer for the pomodoro time management technique."
 msgstr ""
 
-#: data/pomodoro.appdata.xml.in:14
+#: data/pomodoro.appdata.xml.in:15
 msgid ""
 "The Pomodoro Technique is a very simple method to ensure you are taking "
 "enough breaks while working. This simple app helps you to keep track off "
 "when it is time for a break and when it is time to start working again."
 msgstr ""
 
-#: data/pomodoro.appdata.xml.in:23
+#: data/pomodoro.appdata.xml.in:25
+msgid "New translations:"
+msgstr ""
+
+#: data/pomodoro.appdata.xml.in:27
+msgid "🇮🇹 Italian"
+msgstr ""
+
+#: data/pomodoro.appdata.xml.in:28
+msgid "🇫🇷 French"
+msgstr ""
+
+#: data/pomodoro.appdata.xml.in:35
 msgid "First stable release!"
 msgstr ""
