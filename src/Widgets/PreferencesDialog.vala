@@ -42,6 +42,7 @@ public class Pomodoro.Widgets.PreferencesDialog : Granite.Dialog {
         stack.add_titled (notifications_grid, "notifications", _("Notifications"));
 
         var stack_switcher = new Gtk.StackSwitcher ();
+        stack_switcher.homogeneous = true;
         stack_switcher.set_stack (stack);
         stack_switcher.halign = Gtk.Align.CENTER;
 
