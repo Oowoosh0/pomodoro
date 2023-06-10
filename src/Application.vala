@@ -6,6 +6,13 @@ public class Pomodoro.Application : Gtk.Application {
         Object (application_id: "com.github.oowoosh0.pomodoro");
     }
 
+    construct {
+        Intl.setlocale (LocaleCategory.ALL, "");
+        Intl.bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
+        Intl.bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+        Intl.textdomain (GETTEXT_PACKAGE);
+    }
+
     protected override void activate () {
         settings = new GLib.Settings ("com.github.oowoosh0.pomodoro");
         var granite_settings = Granite.Settings.get_default ();
