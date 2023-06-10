@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.oowoosh0.pomodoro\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-10 01:04+0900\n"
+"POT-Creation-Date: 2023-06-10 18:54+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #: src/Widgets/PreferencesDialog.vala:9
 msgid "Preferences"
@@ -57,21 +58,23 @@ msgstr ""
 msgid "Notifications"
 msgstr ""
 
-#: src/Widgets/PreferencesDialog.vala:52
+#: src/Widgets/PreferencesDialog.vala:53
 msgid "Close"
 msgstr ""
 
-#: src/Timer/WorkInterval.vala:32
+#: src/Timer/WorkInterval.vala:33
 #, c-format
-msgid "Time to treat yourself with a break. See you in %i minutes."
-msgstr ""
+msgid "Time to treat yourself with a break. See you in %i minute."
+msgid_plural "Time to treat yourself with a break. See you in %i minutes."
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/Timer/BreakInterval.vala:23
 msgid "Sadly your short break is over. Time to get back to work."
 msgstr ""
 
 #: src/Timer/LongBreakInterval.vala:23
-msgid "Sadly your long break finished. Time to get back to work"
+msgid "Sadly your long break finished. Time to get back to work."
 msgstr ""
 
 #: data/pomodoro.desktop.in:3 data/pomodoro.appdata.xml.in:8

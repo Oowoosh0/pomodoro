@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.oowoosh0.pomodoro\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-10 01:04+0900\n"
+"POT-Creation-Date: 2023-06-10 18:54+0900\n"
 "PO-Revision-Date: 2021-01-23 16:36+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -57,21 +57,24 @@ msgstr "Intervale"
 msgid "Notifications"
 msgstr "Benachrichtigungen"
 
-#: src/Widgets/PreferencesDialog.vala:52
+#: src/Widgets/PreferencesDialog.vala:53
 msgid "Close"
 msgstr "Schließen"
 
-#: src/Timer/WorkInterval.vala:32
-#, c-format
-msgid "Time to treat yourself with a break. See you in %i minutes."
-msgstr "Zeit für eine Pause. Bis in %i Minuten."
+#: src/Timer/WorkInterval.vala:33
+#, fuzzy, c-format
+msgid "Time to treat yourself with a break. See you in %i minute."
+msgid_plural "Time to treat yourself with a break. See you in %i minutes."
+msgstr[0] "Zeit für eine Pause. Bis in %i Minuten."
+msgstr[1] "Zeit für eine Pause. Bis in %i Minuten."
 
 #: src/Timer/BreakInterval.vala:23
 msgid "Sadly your short break is over. Time to get back to work."
 msgstr "Leider ist deine Pause vorbei."
 
 #: src/Timer/LongBreakInterval.vala:23
-msgid "Sadly your long break finished. Time to get back to work"
+#, fuzzy
+msgid "Sadly your long break finished. Time to get back to work."
 msgstr "Leider ist deine lange Pause vorbei."
 
 #: data/pomodoro.desktop.in:3 data/pomodoro.appdata.xml.in:8
