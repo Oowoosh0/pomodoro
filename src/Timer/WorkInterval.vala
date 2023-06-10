@@ -29,6 +29,10 @@ public class Pomodoro.Timer.WorkInterval : Interval {
         if (index % intervals_to_long_break == 0) {
             next_break_duration = LongBreakInterval.break_duration_min;
         }
-        return _("Time to treat yourself with a break. See you in %i minutes.").printf (next_break_duration);
+        return ngettext (
+            "Time to treat yourself with a break. See you in %i minute.",
+            "Time to treat yourself with a break. See you in %i minutes.",
+            next_break_duration
+        ).printf (next_break_duration);
     }
 }
