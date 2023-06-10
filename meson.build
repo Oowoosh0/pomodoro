@@ -5,6 +5,15 @@ i18n = import('i18n')
 
 add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format (meson.project_name()), language:'c')
 
+conf_data = configuration_data()
+conf_data.set_quoted('LOCALEDIR', get_option('prefix') / get_option('localedir'))
+conf_data.set_quoted('GETTEXT_PACKAGE', meson.project_name())
+conf_file = configure_file(
+    input: 'src/Config.vala.in',
+    output: '@BASENAME@',
+    configuration: conf_data
+)
+
 gresources = gnome.compile_resources(
     'as-resources', 'data/css.gresource.xml',
     source_dir: 'data',
@@ -14,6 +23,7 @@ gresources = gnome.compile_resources(
 executable(
     meson.project_name(),
     gresources,
+    conf_file,
     'src/Application.vala',
     'src/MainWindow.vala',
     'src/NotificationManager.vala',
