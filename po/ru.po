@@ -1,105 +1,107 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Russian translation for com.github.oowoosh0.pomodoro.
+# Copyright (C) 2023 THE com.github.oowoosh0.pomodoro'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the com.github.oowoosh0.pomodoro package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# lenemter <lenemter@gmail.com>, 2023.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.oowoosh0.pomodoro\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-10 18:54+0900\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2023-06-10 01:04+0900\n"
+"Last-Translator: lenemter <lenemter@gmail.com>\n"
+"Language-Team: none\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: src/Widgets/PreferencesDialog.vala:9
 msgid "Preferences"
-msgstr ""
+msgstr "Параметры"
 
 #: src/Widgets/PreferencesDialog.vala:18
 msgid "Work duration:"
-msgstr ""
+msgstr "Длительность работы:"
 
 #: src/Widgets/PreferencesDialog.vala:20
 msgid "Break duration:"
-msgstr ""
+msgstr "Длительность перерыва:"
 
 #: src/Widgets/PreferencesDialog.vala:22
 msgid "Long break duration:"
-msgstr ""
+msgstr "Длительность долгого перерыва:"
 
 #: src/Widgets/PreferencesDialog.vala:24
 msgid "Intervals to long break:"
-msgstr ""
+msgstr "Интервалов до долгого перерыва:"
 
 #: src/Widgets/PreferencesDialog.vala:26
 msgid "Autostart intervals:"
-msgstr ""
+msgstr "Автозапуск интервалов:"
 
 #: src/Widgets/PreferencesDialog.vala:32
 msgid "Show notification:"
-msgstr ""
+msgstr "Показывать уведомления:"
 
 #: src/Widgets/PreferencesDialog.vala:34
 msgid "Raise Window to top:"
-msgstr ""
+msgstr "Фокусировать окно:"
 
 #: src/Widgets/PreferencesDialog.vala:41
 msgid "Intervals"
-msgstr ""
+msgstr "Интервалы"
 
 #: src/Widgets/PreferencesDialog.vala:42
 msgid "Notifications"
-msgstr ""
+msgstr "Уведомления"
 
 #: src/Widgets/PreferencesDialog.vala:53
 msgid "Close"
-msgstr ""
+msgstr "Закрыть"
 
 #: src/Timer/WorkInterval.vala:33
 #, c-format
 msgid "Time to treat yourself with a break. See you in %i minute."
 msgid_plural "Time to treat yourself with a break. See you in %i minutes."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Время сделать перерыв. Увидимся через %i минуту."
+msgstr[1] "Время сделать перерыв. Увидимся через %i минуты."
+msgstr[2] "Время сделать перерыв. Увидимся через %i минут."
 
 #: src/Timer/BreakInterval.vala:23
 msgid "Sadly your short break is over. Time to get back to work."
 msgstr ""
+"К сожалению, ваш короткий перерыв закончился. Время вернуться к работе."
 
 #: src/Timer/LongBreakInterval.vala:23
 msgid "Sadly your long break finished. Time to get back to work."
-msgstr ""
+msgstr "К сожалению, ваш долгий перерыв закончился. Время вернуться к работе."
 
 #: data/pomodoro.desktop.in:3 data/pomodoro.appdata.xml.in:8
 msgid "Pomodoro"
-msgstr ""
+msgstr "Pomodoro"
 
 #: data/pomodoro.desktop.in:4
 msgid "Pomodoro Timer"
-msgstr ""
+msgstr "Pomodoro Timer"
 
 #: data/pomodoro.desktop.in:5
 msgid "Timer for pomodoro technique"
-msgstr ""
+msgstr "Таймер для техники помидора"
 
 #: data/pomodoro.desktop.in:11
 msgid "Timer;"
-msgstr ""
+msgstr "Timer;Таймер;"
 
 #: data/pomodoro.appdata.xml.in:9
 msgid "Moriz Mertens (@oowoosh0)"
-msgstr ""
+msgstr "Moriz Mertens (@oowoosh0)"
 
 #: data/pomodoro.appdata.xml.in:13
 msgid "A simple timer for the pomodoro time management technique."
-msgstr ""
+msgstr "Простой таймер для техники тайм-менеджмента помидора."
 
 #: data/pomodoro.appdata.xml.in:15
 msgid ""
@@ -107,19 +109,23 @@ msgid ""
 "enough breaks while working. This simple app helps you to keep track off "
 "when it is time for a break and when it is time to start working again."
 msgstr ""
+"Техника Помидора — это очень простой способ убедиться, что вы делаете "
+"достаточно перерывов во время работы. Это простое приложение поможет вам "
+"отслеживать, когда пора сделать перерыв и когда пора снова приступить к "
+"работе."
 
 #: data/pomodoro.appdata.xml.in:25
 msgid "New translations:"
-msgstr ""
+msgstr "Новые переводы:"
 
 #: data/pomodoro.appdata.xml.in:27
 msgid "🇮🇹 Italian"
-msgstr ""
+msgstr "🇮🇹 Итальянский"
 
 #: data/pomodoro.appdata.xml.in:28
 msgid "🇫🇷 French"
-msgstr ""
+msgstr "🇫🇷 Французский"
 
 #: data/pomodoro.appdata.xml.in:35
 msgid "First stable release!"
-msgstr ""
+msgstr "Первый стабильный выпуск!"
