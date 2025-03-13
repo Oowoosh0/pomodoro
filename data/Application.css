@@ -1,39 +1,14 @@
-@define-color colorBackground #0d52bf;
-
-.main-titlebar {
-    box-shadow:
-        inset 1px 0 0 0 shade (@colorBackground, 1.07),
-        inset -1px 0 0 0 shade (@colorBackground, 1.07),
-        inset 0 1px 0 0 shade (@colorBackground, 1.2);
-}
-
 .timer-label {
     font-family: "Inter";
-    font-size: 36pt;
+    font-size: 48pt;
     font-feature-settings: "tnum";
     color: white;
 }
 
-.timer-box {
-    box-shadow:
-        inset 1px 0 0 0 shade (@colorBackground, 1.07),
-        inset -1px 0 0 0 shade (@colorBackground, 1.07),
-        inset 0 -1px 0 0 shade (@colorBackground, 1.1);
+.start-button {
+    -gtk-icon-size: 64px;
 }
 
-.bg-color {
-    background-color: @colorBackground;
-}
-
-button.titlebutton.close {
-  color: white;
-}
-
-.button {
-    color: white;
-}
-
-.button:focus {
-    background-color: rgba(255, 255, 255, 0);
-    -gtk-icon-shadow: 0px 0px 4px #e1e1e1;
+.forward-button {
+    -gtk-icon-size: 32px;
 }

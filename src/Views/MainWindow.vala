@@ -25,6 +25,38 @@ public class Pomodoro.Views.MainWindow : Gtk.ApplicationWindow {
         header.pack_end(pref_button);
 
         set_titlebar (header);
+
+        var timer_label = new Gtk.Label ("25:00") {
+            valign = Gtk.Align.END
+        };
+        timer_label.add_css_class ("timer-label");
+
+        var start_pause_button = new Gtk.Button () {
+            icon_name = "media-playback-start-symbolic"
+        };
+        start_pause_button.add_css_class ("start-button");
+
+        var forward_button = new Gtk.Button () {
+            icon_name = "media-skip-forward-symbolic"
+        };
+        forward_button.add_css_class ("forward-button");
+
+        var controls = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0) {
+            valign = Gtk.Align.START,
+            halign = Gtk.Align.CENTER
+        };
+        controls.append (start_pause_button);
+        controls.append (forward_button);
+
+        var main_content_area = new Gtk.Box (Gtk.Orientation.VERTICAL, 0) {
+            homogeneous = true,
+            hexpand = true,
+            vexpand = true
+        };
+        main_content_area.append (timer_label);
+        main_content_area.append (controls);
+
+        set_child (main_content_area);
     }
 
     private void show_preferences_dialog () {
