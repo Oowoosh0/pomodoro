@@ -6,12 +6,12 @@ Simple timer for pomodoro style time management.
 ![Screenshot work](data/media/screenshot-1.png?raw=true) ![Screenshot break](data/media/screenshot-2.png?raw=true)
 
 ## building and installation
-To build run
+To build and install run:
 
-    meson build --prefix=/usr
-    cd build
-    ninja test
+    ./build.sh
 
-To install run
+This will install the development version of Pomodoro called PomodoroDevel. It can be installed and run alongside a regular Pomodoro installation without conflicts.
 
-    sudo ninja install
+To remove run
+
+    ./remove.sh
