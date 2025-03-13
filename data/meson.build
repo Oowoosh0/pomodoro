@@ -14,7 +14,11 @@ foreach i : icon_sizes
 endforeach
 
 install_data (
-    'gschema.xml',
+    configure_file(
+        input: files('gschema.xml.in'),
+        output: 'gschema.xml',
+        configuration: conf_data
+    ),
     install_dir: join_paths (get_option ('datadir'), 'glib-2.0', 'schemas'),
     rename: '@0@.gschema.xml'.format(app_id)
 )

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema path="/com/github/oowoosh0/pomodoro/" id="com.github.oowoosh0.pomodoro">
+  <schema path="/com/github/oowoosh0/pomodoro/" id=@APP_ID@>
     <key name="work-time-minutes" type="i">
       <default>25</default>
       <summary>Duration of work time in minutes</summary>
