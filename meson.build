@@ -3,9 +3,19 @@ project('com.github.oowoosh0.pomodoro', 'vala', 'c')
 gnome = import('gnome')
 i18n = import('i18n')
 
+profile = get_option('profile')
+if profile == 'devel'
+    app_id = meson.project_name() + '.Devel'
+else
+    app_id = meson.project_name()
+endif
+
 add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format (meson.project_name()), language:'c')
 
 conf_data = configuration_data()
+conf_data.set_quoted('APP_ID', app_id)
+conf_data.set('APP_ID_UNQUOTED', app_id)
+conf_data.set_quoted('PROFILE', profile)
 conf_data.set_quoted('LOCALEDIR', get_option('prefix') / get_option('localedir'))
 conf_data.set_quoted('GETTEXT_PACKAGE', meson.project_name())
 conf_file = configure_file(

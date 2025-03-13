@@ -3,7 +3,7 @@ public class Pomodoro.Application : Gtk.Application {
     public static GLib.Settings settings;
 
     public Application () {
-        Object (application_id: "com.github.oowoosh0.pomodoro");
+        Object (application_id: APP_ID);
     }
 
     construct {
@@ -14,7 +14,7 @@ public class Pomodoro.Application : Gtk.Application {
     }
 
     protected override void activate () {
-        settings = new GLib.Settings ("com.github.oowoosh0.pomodoro");
+        settings = new GLib.Settings (APP_ID);
         var granite_settings = Granite.Settings.get_default ();
         var gtk_settings = Gtk.Settings.get_default ();
         gtk_settings.gtk_application_prefer_dark_theme = granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK;
