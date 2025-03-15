@@ -40,6 +40,8 @@ executable(
     'src/Application.vala',
     'src/Views/MainWindow.vala',
     'src/Views/PreferencesDialog.vala',
+    'src/Controllers/Timer.vala',
+    'src/Models/Interval.vala',
     dependencies : [
         dependency('glib-2.0'),
         dependency ('gtk4'),
