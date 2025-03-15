@@ -35,7 +35,7 @@ public class Pomodoro.Controllers.Timer : Object {
             main_window.set_timer_label (interval.get_remaining_time ());
             return is_running;
         });
-        interval.start (forward);
+        interval.start (finished);
         main_window.set_start_button_icon ("media-playback-pause-symbolic");
     }
 
@@ -43,6 +43,20 @@ public class Pomodoro.Controllers.Timer : Object {
         is_running = false;
         interval.pause ();
         main_window.set_start_button_icon ("media-playback-start-symbolic");
+    }
+
+    private void finished () {
+        if (App.settings.get_boolean ("show-notifications")) {
+            var notification = new Notification (interval.message);
+            Application.get_default ().send_notification (
+                APP_ID,
+                notification
+            );
+        }
+        if (App.settings.get_boolean ("raise-window")) {
+            main_window.present ();
+        }
+        forward ();
     }
 
     private void update_main_window () {
