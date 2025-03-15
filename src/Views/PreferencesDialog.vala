@@ -1,14 +1,15 @@
 public class Pomodoro.Views.PreferencesDialog : Granite.Dialog {
     private Gtk.Stack stack;
+    private Controllers.Timer controller;
 
-    public PreferencesDialog (Gtk.Window? parent) {
+    public PreferencesDialog (Gtk.Window? parent, Controllers.Timer c) {
         Object (
-            // border_width: 5,
             deletable: false,
             resizable: false,
             title: _("Preferences"),
             transient_for: parent
         );
+        controller = c;
     }
 
     construct {
@@ -54,13 +55,13 @@ public class Pomodoro.Views.PreferencesDialog : Granite.Dialog {
         main_grid.attach (stack_switcher, 0, 0, 1, 1);
         main_grid.attach (stack, 0, 1, 1, 1);
 
-        var close_button = new Gtk.Button.with_label (_("Close"));
-        close_button.clicked.connect (() => {
-            close ();
-        });
-
         get_content_area ().append (main_grid);
-        add_action_widget (close_button, 0);
+
+        var close_button = (Gtk.Button) add_button (_("Close"), Gtk.ResponseType.CLOSE);
+        close_button.clicked.connect (() => {
+            controller.remove_dialog ();
+            destroy ();
+        });
     }
 
     private Gtk.Label create_label (string text) {

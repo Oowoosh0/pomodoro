@@ -1,6 +1,7 @@
 public class Pomodoro.Controllers.Timer : Object {
     private Models.Interval interval;
     private Views.MainWindow main_window;
+    private Views.PreferencesDialog? preferences_dialog = null;
     private bool is_running;
 
     public Timer (Views.MainWindow window) {
@@ -33,6 +34,18 @@ public class Pomodoro.Controllers.Timer : Object {
         }
     }
 
+    public void show_preferences_dialog () {
+        if (preferences_dialog == null) {
+            preferences_dialog = new Views.PreferencesDialog (main_window, this);
+        }
+
+        preferences_dialog.present ();
+    }
+
+    public void remove_dialog () {
+        preferences_dialog = null;
+    }
+
     private void start () {
         is_running = true;
         Timeout.add (500, () => {
@@ -61,10 +74,5 @@ public class Pomodoro.Controllers.Timer : Object {
             main_window.present ();
         }
         forward ();
-    }
-
-    private void update_main_window () {
-        main_window.set_timer_label (interval.get_remaining_time ());
-        main_window.set_bg_color (interval.color);
     }
 }

@@ -4,7 +4,7 @@ public class Pomodoro.App : Gtk.Application {
     public App () {
         Object (
             application_id: APP_ID,
-            flags: ApplicationFlags.FLAGS_NONE
+            flags: ApplicationFlags.DEFAULT_FLAGS
         );
     }
 
