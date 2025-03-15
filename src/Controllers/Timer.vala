@@ -26,7 +26,11 @@ public class Pomodoro.Controllers.Timer : Object {
         interval = interval.next ();
         main_window.set_timer_label (interval.get_remaining_time ());
         main_window.set_bg_color (interval.color);
-        main_window.set_start_button_icon ("media-playback-start-symbolic");
+        if (App.settings.get_boolean ("autostart-interval")) {
+            start ();
+        } else {
+            main_window.set_start_button_icon ("media-playback-start-symbolic");
+        }
     }
 
     private void start () {
