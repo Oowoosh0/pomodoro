@@ -5,14 +5,14 @@ public enum Pomodoro.Models.IntervalType {
 }
 
 public class Pomodoro.Models.Interval : Object {
-    private static string[] COLORS = {"#0d52bf", "#cc3b02", "#a10705"};
-    private static string[] MESSAGES = {
+    private static string[] colors = {"#0d52bf", "#cc3b02", "#a10705"};
+    private static string[] messages = {
         _("Time to treat yourself with a break."),
         _("Sadly your short break is over."),
         _("Sadly your long break finished. Time to get back to work.")
     };
 
-    public delegate void callbackOnFinished();
+    public delegate void callbackOnFinished ();
 
     private TimeoutSource? timer = null;
     private IntervalType type;
@@ -20,10 +20,10 @@ public class Pomodoro.Models.Interval : Object {
     private int intervals_to_long_break;
     private int remaining_time;
 
-    public string message { get { return MESSAGES[type]; } }
-    public string color { get { return COLORS[type]; } }
+    public string message { get { return messages[type]; } }
+    public string color { get { return colors[type]; } }
 
-    public Interval(IntervalType t, int i) {
+    public Interval (IntervalType t, int i) {
         type = t;
         index = i;
         intervals_to_long_break = App.settings.get_int ("intervals-to-long-break");

@@ -30,7 +30,7 @@ public class Pomodoro.Views.MainWindow : Gtk.ApplicationWindow {
             title_widget = new Gtk.Label ("")
         };
         header.add_css_class (Granite.STYLE_CLASS_FLAT);
-        header.pack_end(pref_button);
+        header.pack_end (pref_button);
 
         set_titlebar (header);
 
