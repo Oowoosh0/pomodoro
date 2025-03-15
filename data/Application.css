@@ -1,3 +1,10 @@
+@define-color colorBackground #0d52bf;
+
+.bg-color {
+    background-color: @colorBackground;
+    transition: all 250ms ease-in-out;
+}
+
 .timer-label {
     font-family: "Inter";
     font-size: 48pt;
@@ -10,5 +17,5 @@
 }
 
 .forward-button {
-    -gtk-icon-size: 32px;
+    -gtk-icon-size: 40px;
 }

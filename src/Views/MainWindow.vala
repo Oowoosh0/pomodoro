@@ -2,6 +2,7 @@ public class Pomodoro.Views.MainWindow : Gtk.ApplicationWindow {
     private Controllers.Timer timer;
     private Gtk.Button start_pause_button;
     private Gtk.Label timer_label;
+    private const string BG_CSS = "@define-color colorBackground %s;";
 
     public MainWindow (Gtk.Application application) {
         Object (
@@ -15,6 +16,8 @@ public class Pomodoro.Views.MainWindow : Gtk.ApplicationWindow {
 
     construct {
         timer = new Controllers.Timer (this);
+
+        add_css_class ("bg-color");
 
         var pref_button = new Gtk.Button.from_icon_name ("open-menu-symbolic");
         pref_button.clicked.connect (() => {
@@ -78,7 +81,18 @@ public class Pomodoro.Views.MainWindow : Gtk.ApplicationWindow {
     }
 
     public void set_bg_color (string color) {
-
+        var css_provider = new Gtk.CssProvider ();
+        var new_css = BG_CSS.printf (color);
+        try {
+            css_provider.load_from_string (new_css);
+            Gtk.StyleContext.add_provider_for_display (
+                Gdk.Display.get_default (),
+                css_provider,
+                Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+            );
+        } catch (GLib.Error e) {
+            return;
+        }
     }
 
 }
