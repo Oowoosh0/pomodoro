@@ -20,6 +20,7 @@ public class Pomodoro.Views.MainWindow : Gtk.ApplicationWindow {
         add_css_class ("bg-color");
 
         var pref_button = new Gtk.Button.from_icon_name ("open-menu-symbolic");
+        pref_button.add_css_class ("button");
         pref_button.clicked.connect (() => {
             timer.show_preferences_dialog ();
         });
@@ -41,6 +42,7 @@ public class Pomodoro.Views.MainWindow : Gtk.ApplicationWindow {
         start_pause_button = new Gtk.Button () {
             icon_name = "media-playback-start-symbolic"
         };
+        start_pause_button.add_css_class ("button");
         start_pause_button.add_css_class ("start-button");
         start_pause_button.clicked.connect (() => {
             timer.toggle ();
@@ -49,6 +51,7 @@ public class Pomodoro.Views.MainWindow : Gtk.ApplicationWindow {
         var forward_button = new Gtk.Button () {
             icon_name = "media-skip-forward-symbolic"
         };
+        forward_button.add_css_class ("button");
         forward_button.add_css_class ("forward-button");
         forward_button.clicked.connect (() => {
             timer.forward ();
@@ -83,16 +86,12 @@ public class Pomodoro.Views.MainWindow : Gtk.ApplicationWindow {
     public void set_bg_color (string color) {
         var css_provider = new Gtk.CssProvider ();
         var new_css = BG_CSS.printf (color);
-        try {
-            css_provider.load_from_string (new_css);
-            Gtk.StyleContext.add_provider_for_display (
-                Gdk.Display.get_default (),
-                css_provider,
-                Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-            );
-        } catch (GLib.Error e) {
-            return;
-        }
+        css_provider.load_from_string (new_css);
+        Gtk.StyleContext.add_provider_for_display (
+            Gdk.Display.get_default (),
+            css_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        );
     }
 
 }

@@ -12,6 +12,19 @@
     color: white;
 }
 
+button.close {
+  color: white;
+}
+
+.button {
+    color: white;
+}
+
+.button:focus {
+    background-color: rgba(255, 255, 255, 0);
+    -gtk-icon-shadow: 0px 0px 4px #e1e1e1;
+}
+
 .start-button {
     -gtk-icon-size: 64px;
 }
