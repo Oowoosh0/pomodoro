@@ -78,6 +78,10 @@ public class Pomodoro.Views.MainWindow : Gtk.ApplicationWindow {
         timer_label.label = "%.2i:%.2i".printf (seconds / 60, seconds % 60);
     }
 
+    public void set_bg_color (string color) {
+
+    }
+
     private void show_preferences_dialog () {
         if (preferences_dialog == null) {
             preferences_dialog = new PreferencesDialog (this);

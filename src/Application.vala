@@ -15,12 +15,11 @@ public class Pomodoro.App : Gtk.Application {
         Intl.textdomain (GETTEXT_PACKAGE);
     }
 
-    protected override void activate () {
-        if (active_window != null) {
-            active_window.present ();
-            return;
-        }
+    protected override void startup () {
+        base.startup ();
+
         settings = new GLib.Settings (APP_ID);
+
         var granite_settings = Granite.Settings.get_default ();
         var gtk_settings = Gtk.Settings.get_default ();
         gtk_settings.gtk_application_prefer_dark_theme = granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK;
@@ -36,6 +35,13 @@ public class Pomodoro.App : Gtk.Application {
             provider,
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         );
+    }
+
+    protected override void activate () {
+        if (active_window != null) {
+            active_window.present ();
+            return;
+        }
 
         var main_window = new Views.MainWindow (this);
         main_window.present ();
