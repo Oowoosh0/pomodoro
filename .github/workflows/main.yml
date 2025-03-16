@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: ghcr.io/elementary/flatpak-platform/runtime:7.2
+      image: ghcr.io/elementary/flatpak-platform/runtime:8.1
       options: --privileged
 
     steps:
