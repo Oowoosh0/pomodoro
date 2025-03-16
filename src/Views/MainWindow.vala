@@ -16,15 +16,27 @@ public class Pomodoro.Views.MainWindow : Gtk.ApplicationWindow {
     }
 
     construct {
-        timer = new Controllers.Timer (this);
-
         add_css_class ("bg-color");
 
-        var pref_button = new Gtk.Button.from_icon_name ("open-menu-symbolic");
+        timer = new Controllers.Timer (this);
+
+        var action_toggle = new SimpleAction ("toggle", null);
+        action_toggle.activate.connect (timer.toggle);
+        add_action (action_toggle);
+
+        var action_forward = new SimpleAction ("forward", null);
+        action_forward.activate.connect (timer.forward);
+        add_action (action_forward);
+
+        var action_pref = new SimpleAction ("open-preferences", null);
+        action_pref.activate.connect (show_preferences_dialog);
+        add_action (action_pref);
+
+        var pref_button = new Gtk.Button () {
+            icon_name = "open-menu-symbolic",
+            action_name = "win.open-preferences"
+        };
         pref_button.add_css_class ("button");
-        pref_button.clicked.connect (() => {
-            show_preferences_dialog ();
-        });
 
         var header = new Gtk.HeaderBar () {
             decoration_layout = "close:",
@@ -41,22 +53,18 @@ public class Pomodoro.Views.MainWindow : Gtk.ApplicationWindow {
         timer_label.add_css_class ("timer-label");
 
         start_pause_button = new Gtk.Button () {
-            icon_name = "media-playback-start-symbolic"
+            icon_name = "media-playback-start-symbolic",
+            action_name = "win.toggle"
         };
         start_pause_button.add_css_class ("button");
         start_pause_button.add_css_class ("start-button");
-        start_pause_button.clicked.connect (() => {
-            timer.toggle ();
-        });
 
         var forward_button = new Gtk.Button () {
-            icon_name = "media-skip-forward-symbolic"
+            icon_name = "media-skip-forward-symbolic",
+            action_name = "win.forward"
         };
         forward_button.add_css_class ("button");
         forward_button.add_css_class ("forward-button");
-        forward_button.clicked.connect (() => {
-            timer.forward ();
-        });
 
         var controls = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0) {
             valign = Gtk.Align.START,
