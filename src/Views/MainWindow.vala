@@ -3,6 +3,8 @@ public class Pomodoro.Views.MainWindow : Gtk.ApplicationWindow {
     private Views.PreferencesDialog? preferences_dialog = null;
     private Gtk.Button start_pause_button;
     private Gtk.Label timer_label;
+    private Gtk.Label interval_count_label;
+    private Gtk.Label interval_type_label;
     private const string BG_CSS = "@define-color colorBackground %s;";
 
     public MainWindow (Gtk.Application application) {
@@ -48,9 +50,22 @@ public class Pomodoro.Views.MainWindow : Gtk.ApplicationWindow {
         set_titlebar (header);
 
         timer_label = new Gtk.Label ("00:00") {
+            valign = Gtk.Align.CENTER
+        };
+        timer_label.add_css_class ("labels");
+        timer_label.add_css_class ("timer-label");
+
+        interval_type_label = new Gtk.Label ("WORK") {
             valign = Gtk.Align.END
         };
-        timer_label.add_css_class ("timer-label");
+        interval_type_label.add_css_class ("labels");
+        interval_type_label.add_css_class ("interval-type-label");
+
+        interval_count_label = new Gtk.Label ("1 | 4") {
+            valign = Gtk.Align.END,
+            margin_bottom = 15
+        };
+        interval_count_label.add_css_class ("labels");
 
         start_pause_button = new Gtk.Button () {
             icon_name = "media-playback-start-symbolic",
@@ -68,20 +83,25 @@ public class Pomodoro.Views.MainWindow : Gtk.ApplicationWindow {
 
         var controls = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0) {
             valign = Gtk.Align.START,
-            halign = Gtk.Align.CENTER
+            halign = Gtk.Align.CENTER,
+            margin_top = 15,
+            margin_bottom = 15
         };
         controls.append (start_pause_button);
         controls.append (forward_button);
 
         var main_content_area = new Gtk.Box (Gtk.Orientation.VERTICAL, 0) {
-            homogeneous = true,
-            hexpand = true,
-            vexpand = true
+            valign = Gtk.Align.CENTER
         };
+        main_content_area.append (interval_type_label);
+        main_content_area.append (interval_count_label);
         main_content_area.append (timer_label);
         main_content_area.append (controls);
 
-        set_child (main_content_area);
+        var handle = new Gtk.WindowHandle ();
+        handle.set_child (main_content_area);
+
+        set_child (handle);
     }
 
     public void set_start_button_icon (string icon_name) {
@@ -90,6 +110,18 @@ public class Pomodoro.Views.MainWindow : Gtk.ApplicationWindow {
 
     public void set_timer_label (int seconds) {
         timer_label.label = "%.2i:%.2i".printf (seconds / 60, seconds % 60);
+    }
+
+    public void set_interval_count_label (int current, int until_long_break) {
+        if (current == 0) {
+            interval_count_label.label = "";
+        } else {
+            interval_count_label.label = "%i | %i".printf (current, until_long_break);
+        }
+    }
+
+    public void set_interval_type_label (string type) {
+        interval_type_label.label = type;
     }
 
     public void set_bg_color (string color) {

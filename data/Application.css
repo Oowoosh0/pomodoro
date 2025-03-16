@@ -5,11 +5,18 @@
     transition: all 250ms ease-in-out;
 }
 
-.timer-label {
-    font-family: "Inter";
-    font-size: 48pt;
-    font-feature-settings: "tnum";
+.labels {
     color: white;
+    font-feature-settings: "tnum";
+}
+
+.interval-type-label {
+    font-size: 1.22em;
+    font-weight: bold;
+}
+
+.timer-label {
+    font-size: 95px;
 }
 
 button.close {

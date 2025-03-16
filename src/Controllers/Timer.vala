@@ -25,6 +25,8 @@ public class Pomodoro.Controllers.Timer : Object {
         is_running = false;
         interval = interval.next ();
         main_window.set_timer_label (interval.get_remaining_time ());
+        main_window.set_interval_type_label (interval.type_string);
+        main_window.set_interval_count_label (interval.index, interval.intervals_to_long_break);
         main_window.set_bg_color (interval.color);
         if (App.settings.get_boolean ("autostart-interval")) {
             start ();

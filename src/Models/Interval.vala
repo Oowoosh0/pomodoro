@@ -6,6 +6,7 @@ public enum Pomodoro.Models.IntervalType {
 
 public class Pomodoro.Models.Interval : Object {
     private static string[] colors = {"#0d52bf", "#cc3b02", "#a10705"};
+    private static string[] type_strings = {_("WORK"), _("BREAK"), _("LONG BREAK")};
     private static string[] messages = {
         _("Time to treat yourself with a break."),
         _("Sadly your short break is over."),
@@ -16,12 +17,13 @@ public class Pomodoro.Models.Interval : Object {
 
     private TimeoutSource? timer = null;
     private IntervalType type;
-    private int index;
-    private int intervals_to_long_break;
     private int remaining_time;
 
+    public int index { get; private set;}
+    public int intervals_to_long_break { get; private set; }
     public string message { get { return messages[type]; } }
     public string color { get { return colors[type]; } }
+    public string type_string { get { return type_strings[type]; } }
 
     public Interval (IntervalType t, int i) {
         type = t;
@@ -72,8 +74,8 @@ public class Pomodoro.Models.Interval : Object {
         if (type != IntervalType.WORK) {
             return new Interval (IntervalType.WORK, index + 1);
         }
-        if (index % intervals_to_long_break == 0) {
-            return new Interval (IntervalType.LONG_BREAK, index);
+        if (index == intervals_to_long_break) {
+            return new Interval (IntervalType.LONG_BREAK, 0);
         }
         return new Interval (IntervalType.BREAK, index);
     }
