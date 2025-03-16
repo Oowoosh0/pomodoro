@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.oowoosh0.pomodoro\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-10 18:54+0900\n"
+"POT-Creation-Date: 2025-03-16 13:52+0100\n"
 "PO-Revision-Date: 2021-01-23 16:36+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,62 +17,73 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/Widgets/PreferencesDialog.vala:9
+#: src/Views/PreferencesDialog.vala:8
 msgid "Preferences"
 msgstr "Einstellungen"
 
-#: src/Widgets/PreferencesDialog.vala:18
+#: src/Views/PreferencesDialog.vala:20
 msgid "Work duration:"
 msgstr "Arbeitsdauer:"
 
-#: src/Widgets/PreferencesDialog.vala:20
+#: src/Views/PreferencesDialog.vala:22
 msgid "Break duration:"
 msgstr "Pausendauer:"
 
-#: src/Widgets/PreferencesDialog.vala:22
+#: src/Views/PreferencesDialog.vala:24
 msgid "Long break duration:"
 msgstr "Dauer der langen Pausen:"
 
-#: src/Widgets/PreferencesDialog.vala:24
+#: src/Views/PreferencesDialog.vala:26
 msgid "Intervals to long break:"
 msgstr "Arbeitseinheiten vor langer Pause:"
 
-#: src/Widgets/PreferencesDialog.vala:26
+#: src/Views/PreferencesDialog.vala:28
 msgid "Autostart intervals:"
 msgstr "Intervale automatisch starten:"
 
-#: src/Widgets/PreferencesDialog.vala:32
+#: src/Views/PreferencesDialog.vala:37
 msgid "Show notification:"
 msgstr "Benachrichtigungen anzeigen:"
 
-#: src/Widgets/PreferencesDialog.vala:34
+#: src/Views/PreferencesDialog.vala:39
 msgid "Raise Window to top:"
 msgstr "Fenster hervorheben:"
 
-#: src/Widgets/PreferencesDialog.vala:41
+#: src/Views/PreferencesDialog.vala:45
 msgid "Intervals"
 msgstr "Intervale"
 
-#: src/Widgets/PreferencesDialog.vala:42
+#: src/Views/PreferencesDialog.vala:46
 msgid "Notifications"
 msgstr "Benachrichtigungen"
 
-#: src/Widgets/PreferencesDialog.vala:53
+#: src/Views/PreferencesDialog.vala:58
 msgid "Close"
 msgstr "Schließen"
 
-#: src/Timer/WorkInterval.vala:33
-#, fuzzy, c-format
-msgid "Time to treat yourself with a break. See you in %i minute."
-msgid_plural "Time to treat yourself with a break. See you in %i minutes."
-msgstr[0] "Zeit für eine Pause. Bis in %i Minuten."
-msgstr[1] "Zeit für eine Pause. Bis in %i Minuten."
+#: src/Models/Interval.vala:9
+msgid "WORK"
+msgstr "ARBEIT"
 
-#: src/Timer/BreakInterval.vala:23
-msgid "Sadly your short break is over. Time to get back to work."
+#: src/Models/Interval.vala:9
+msgid "BREAK"
+msgstr "PAUSE"
+
+#: src/Models/Interval.vala:9
+msgid "LONG BREAK"
+msgstr "LANGE PAUSE"
+
+#: src/Models/Interval.vala:11
+#, fuzzy
+msgid "Time to treat yourself with a break."
+msgstr "Zeit sich eine Pause zu gönnen."
+
+#: src/Models/Interval.vala:12
+#, fuzzy
+msgid "Sadly your short break is over."
 msgstr "Leider ist deine Pause vorbei."
 
-#: src/Timer/LongBreakInterval.vala:23
+#: src/Models/Interval.vala:13
 #, fuzzy
 msgid "Sadly your long break finished. Time to get back to work."
 msgstr "Leider ist deine lange Pause vorbei."
@@ -91,7 +102,7 @@ msgstr "Timer für die Pomodoro Technik"
 
 #: data/pomodoro.desktop.in:11
 msgid "Timer;"
-msgstr "Timer;"
+msgstr ""
 
 #: data/pomodoro.appdata.xml.in:9
 msgid "Moriz Mertens (@oowoosh0)"
