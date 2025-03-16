@@ -1,7 +1,6 @@
 public class Pomodoro.Controllers.Timer : Object {
     private Models.Interval interval;
     private Views.MainWindow main_window;
-    private Views.PreferencesDialog? preferences_dialog = null;
     private bool is_running;
 
     public Timer (Views.MainWindow window) {
@@ -32,18 +31,6 @@ public class Pomodoro.Controllers.Timer : Object {
         } else {
             main_window.set_start_button_icon ("media-playback-start-symbolic");
         }
-    }
-
-    public void show_preferences_dialog () {
-        if (preferences_dialog == null) {
-            preferences_dialog = new Views.PreferencesDialog (main_window, this);
-        }
-
-        preferences_dialog.present ();
-    }
-
-    public void remove_dialog () {
-        preferences_dialog = null;
     }
 
     private void start () {
