@@ -1,5 +1,6 @@
 public class Pomodoro.Views.MainWindow : Gtk.ApplicationWindow {
     private Controllers.Timer timer;
+    private Views.PreferencesDialog? preferences_dialog = null;
     private Gtk.Button start_pause_button;
     private Gtk.Label timer_label;
     private const string BG_CSS = "@define-color colorBackground %s;";
@@ -22,7 +23,7 @@ public class Pomodoro.Views.MainWindow : Gtk.ApplicationWindow {
         var pref_button = new Gtk.Button.from_icon_name ("open-menu-symbolic");
         pref_button.add_css_class ("button");
         pref_button.clicked.connect (() => {
-            timer.show_preferences_dialog ();
+            show_preferences_dialog ();
         });
 
         var header = new Gtk.HeaderBar () {
@@ -94,4 +95,16 @@ public class Pomodoro.Views.MainWindow : Gtk.ApplicationWindow {
         );
     }
 
+    private void show_preferences_dialog () {
+        if (preferences_dialog == null) {
+            preferences_dialog = new Views.PreferencesDialog (this);
+
+            preferences_dialog.response.connect ((t, a) => {
+                preferences_dialog.destroy ();
+                preferences_dialog = null;
+            });
+        }
+
+        preferences_dialog.present ();
+    }
 }
