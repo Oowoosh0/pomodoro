@@ -68,8 +68,9 @@ public class Pomodoro.Views.PreferencesDialog : Granite.Dialog {
 
     private Gtk.Switch create_switch (string setting) {
         var toggle = new Gtk.Switch () {
+            hexpand = true,
             halign = Gtk.Align.END,
-            valign = Gtk.Align.CENTER
+            valign = Gtk.Align.CENTER,
         };
         App.settings.bind (setting, toggle, "active", GLib.SettingsBindFlags.DEFAULT);
 
