@@ -1,7 +1,7 @@
 app-id: com.github.oowoosh0.pomodoro
 
 runtime: io.elementary.Platform
-runtime-version: '7.2'
+runtime-version: '8.1'
 sdk: io.elementary.Sdk
 
 command: com.github.oowoosh0.pomodoro

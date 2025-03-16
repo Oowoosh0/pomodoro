@@ -38,20 +38,14 @@ executable(
     gresources,
     conf_file,
     'src/Application.vala',
-    'src/MainWindow.vala',
-    'src/NotificationManager.vala',
-    'src/Widgets/TimerLabel.vala',
-    'src/Widgets/PreferencesDialog.vala',
-    'src/Timer/Interval.vala',
-    'src/Timer/IntervalState.vala',
-    'src/Timer/WorkInterval.vala',
-    'src/Timer/BreakInterval.vala',
-    'src/Timer/LongBreakInterval.vala',
+    'src/Views/MainWindow.vala',
+    'src/Views/PreferencesDialog.vala',
+    'src/Controllers/Timer.vala',
+    'src/Models/Interval.vala',
     dependencies : [
         dependency('glib-2.0'),
-        dependency('gtk+-3.0'),
-        dependency('granite', version: '>=6.0.0'),
-        dependency('libhandy-1', version: '>= 0.90.0')
+        dependency ('gtk4'),
+        dependency ('granite-7')
     ],
     install: true
 )
