@@ -30,7 +30,7 @@ install_data (
         output: 'gschema.xml',
         configuration: conf_data
     ),
-    install_dir: join_paths (get_option ('datadir'), 'glib-2.0', 'schemas'),
+    install_dir: get_option ('datadir') / 'glib-2.0' / 'schemas',
     rename: '@0@.gschema.xml'.format(app_id)
 )
 
