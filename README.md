@@ -3,7 +3,9 @@
 # pomodoro
 Simple timer for pomodoro style time management.
 
-![Screenshot work](data/media/screenshot-1.png?raw=true) ![Screenshot break](data/media/screenshot-2.png?raw=true)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Oowoosh0/pomodoro/main/data/media/screenshot-1.png" />
+</p>
 
 ## building and installation
 To build and install run:
