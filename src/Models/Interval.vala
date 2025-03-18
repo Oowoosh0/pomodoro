@@ -19,7 +19,7 @@ public class Pomodoro.Models.Interval : Object {
     private IntervalType type;
     private int remaining_time;
 
-    public int index { get; private set;}
+    public int index { get; private set; }
     public int intervals_to_long_break { get; private set; }
     public string message { get { return messages[type]; } }
     public string color { get { return colors[type]; } }
@@ -43,6 +43,10 @@ public class Pomodoro.Models.Interval : Object {
             remaining_time = 1500;
             break;
         }
+    }
+
+    public Interval.from_interval (Interval i) {
+        this (i.type, i.index);
     }
 
     public void start (callbackOnFinished cb) {
