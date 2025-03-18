@@ -12,7 +12,7 @@ else
     app_name = 'Pomodoro'
 endif
 
-add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format (meson.project_name()), language:'c')
+add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format (app_id), language:'c')
 
 conf_data = configuration_data()
 conf_data.set_quoted('APP_ID', app_id)
@@ -20,7 +20,7 @@ conf_data.set('APP_ID_UNQUOTED', app_id)
 conf_data.set('APP_NAME', app_name)
 conf_data.set_quoted('PROFILE', profile)
 conf_data.set_quoted('LOCALEDIR', get_option('prefix') / get_option('localedir'))
-conf_data.set_quoted('GETTEXT_PACKAGE', meson.project_name())
+conf_data.set_quoted('GETTEXT_PACKAGE', app_id)
 conf_file = configure_file(
     input: 'src/Config.vala.in',
     output: '@BASENAME@',
@@ -34,7 +34,7 @@ gresources = gnome.compile_resources(
 )
 
 executable(
-    meson.project_name(),
+    app_id,
     gresources,
     conf_file,
     'src/Application.vala',

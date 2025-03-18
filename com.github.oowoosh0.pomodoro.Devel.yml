@@ -4,7 +4,7 @@ runtime: io.elementary.Platform
 runtime-version: '8.1'
 sdk: io.elementary.Sdk
 
-command: com.github.oowoosh0.pomodoro
+command: com.github.oowoosh0.pomodoro.Devel
 
 finish-args:
   - '--share=ipc'
