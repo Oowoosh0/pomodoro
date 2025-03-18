@@ -17,6 +17,7 @@ public class Pomodoro.App : Gtk.Application {
 
     protected override void startup () {
         base.startup ();
+        Granite.init ();
 
         settings = new GLib.Settings (APP_ID);
 
@@ -29,14 +30,6 @@ public class Pomodoro.App : Gtk.Application {
             gtk_settings.gtk_application_prefer_dark_theme =
                 granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK;
         });
-
-        var provider = new Gtk.CssProvider ();
-        provider.load_from_resource ("com/github/oowoosh0/pomodoro/Application.css");
-        Gtk.StyleContext.add_provider_for_display (
-            Gdk.Display.get_default (),
-            provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-        );
     }
 
     protected override void activate () {
