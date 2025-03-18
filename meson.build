@@ -7,9 +7,11 @@ profile = get_option('profile')
 if profile == 'devel'
     app_id = meson.project_name() + '.Devel'
     app_name = 'PomodoroDevel'
+    app_path = '/com/github/oowoosh0/pomodoro/Devel'
 else
     app_id = meson.project_name()
     app_name = 'Pomodoro'
+    app_path = '/com/github/oowoosh0/pomodoro'
 endif
 
 add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format (app_id), language:'c')
@@ -18,6 +20,7 @@ conf_data = configuration_data()
 conf_data.set_quoted('APP_ID', app_id)
 conf_data.set('APP_ID_UNQUOTED', app_id)
 conf_data.set('APP_NAME', app_name)
+conf_data.set('APP_PATH', app_path)
 conf_data.set_quoted('PROFILE', profile)
 conf_data.set_quoted('LOCALEDIR', get_option('prefix') / get_option('localedir'))
 conf_data.set_quoted('GETTEXT_PACKAGE', app_id)
@@ -27,11 +30,8 @@ conf_file = configure_file(
     configuration: conf_data
 )
 
-gresources = gnome.compile_resources(
-    'as-resources', 'data/css.gresource.xml',
-    source_dir: 'data',
-    c_name: 'as'
-)
+subdir('data')
+subdir('po')
 
 executable(
     app_id,
@@ -49,9 +49,5 @@ executable(
     ],
     install: true
 )
-
-
-subdir('data')
-subdir('po')
 
 meson.add_install_script('meson/post_install.py')

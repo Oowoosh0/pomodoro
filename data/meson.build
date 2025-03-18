@@ -1,3 +1,14 @@
+gresources = gnome.compile_resources(
+    'as-resources',
+    configure_file(
+        input: files('css.gresource.xml'),
+        output: 'pomodoro.gresource.xml',
+        configuration: conf_data
+    ),
+    source_dir: meson.source_root() / 'data',
+    c_name: 'as'
+)
+
 icon_sizes = ['16', '24', '32', '48', '64', '128']
 
 foreach i : icon_sizes
